@@ -1,0 +1,51 @@
+<mat-toolbar class="mat-elevation-z7" >
+  <span class="logo"> <h1>Piechur.pl</h1></span>
+  <span class="fill-small-space"></span>
+  <span class="fill-small-space"></span>
+  <button mat-icon-button><i class="fa fa-search fa-lg"></i></button>
+  <mat-form-field>
+    <input matInput placeholder="Miejscowość">
+  </mat-form-field>
+  <span class="fill-space"></span>
+  <button mat-button [matMenuTriggerFor]="menu">Moi klienci </button>
+  <button mat-button [matMenuTriggerFor]="menu">Mój Katalog</button>
+  <span class="fill-small-space"></span>
+  <button mat-icon-button><i class="fa fa-bell fa-lg"></i></button>
+  <button mat-icon-button><i class="fa fa-calendar fa-lg"></i></button>
+  <button mat-icon-button><i class="fa fa-user fa-lg"></i></button>
+  
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Moje miejsca</button>
+    <button mat-menu-item>Moje zakwaterowania</button>
+    <button mat-menu-item>Moje atrakcje</button>
+  </mat-menu>
+</mat-toolbar>
+
+<br>
+<br>
+<br>
+<br>
+
+<mat-accordion [multi]="true" [displayMode]="flat" (openAll)="openAll()">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+       <b>Zaawansowane Szukanie</b> 
+      </mat-expansion-panel-header>
+      Input1 <br>
+      Input2 <br>
+      Input3 <br>
+      <br>
+      Input4 <br>
+      Input5 <br>
+      Input6 <br>
+    </mat-expansion-panel>
+    <mat-expansion-panel  [expanded]="true">
+      <mat-expansion-panel-header>
+        <b>Pogoda</b>
+      </mat-expansion-panel-header> 
+      Forecast for Krakow <br>
+      Forecast for Warsaw <br>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+

@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import '@angular/material/prebuilt-themes/deeppurple-amber.css'; */
+@import '~font-awesome/css/font-awesome.css';
+@import '~froala-editor/css/froala_editor.pkgd.min.css';
+@import '~froala-editor/css/froala_style.min.css';
+
+
+
+@import '~primeicons/primeicons.css';
+@import '~primeng/resources/themes/nova-light/theme.css'; 
+@import '~primeng/resources/primeng.min.css';
+
+
+@import '~quill/dist/quill.core.css';
+@import '~quill/dist/quill.snow.css';
+
+mat-form-field {
+    width: 30%;
+}
+
+.standard-input-space {
+    margin-right: 15%;
+}
+
+mat-divider {
+    padding-bottom: 3%;
+}

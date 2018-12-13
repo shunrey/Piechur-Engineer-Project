@@ -1,0 +1,60 @@
+
+ mat-toolbar {
+    background-color:#004c40;
+    color: white;
+    z-index: 1;
+    width: 100%  !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-bottom: 10%;
+}
+
+mat-form-field {
+    font-size: 70%;
+    width: 25%;
+    color: lightgray;
+}
+
+mat-accordion {
+    
+    width:20%;
+    position: fixed;
+    top: 10;
+    left: 10;
+    right: 10;
+    bottom: 10;
+}
+
+mat-expansion-panel {
+    background-color: #00796b; 
+    color: white;
+}
+.fill-space {
+    flex: 1 1 auto
+}
+
+.fill-small-space {
+    flex: 0.05 0.05 auto
+}
+
+.mat-elevation-z5 {
+    position: relative;
+    z-index: 2;
+ }
+
+ .logo h1 {
+	display: inline;
+	position: relative;
+	font: 40px Helvetica, Sans-Serif;
+	letter-spacing: -3px;
+	color: darkcyan; 
+}
+
+.logo h1:after {
+	content: "Piechur.pl";
+	position: absolute; left: 4px; top: 2px;
+	color: white;   
+}

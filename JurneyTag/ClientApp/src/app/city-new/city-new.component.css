@@ -1,0 +1,9 @@
+.ql-toolbar button.ql-active {
+    color: red;
+  }
+
+  #map {
+    height: 70vh;
+    width: 40vw;
+}
+
