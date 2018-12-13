@@ -22,8 +22,8 @@ namespace JurneyTag.Controllers
             _hostingEnvironment = hostingEnvironment;
         }
 
-        [HttpPost("cityPhoto")]
-        public async Task<IActionResult> CityPhoto(IFormFile image)
+        [HttpPost("add")]
+        public async Task<IActionResult> AddCityPhoto(IFormFile image)
         {
             var path = Path.Combine(_hostingEnvironment.WebRootPath, "CityGallery", "User1");
 
@@ -41,6 +41,15 @@ namespace JurneyTag.Controllers
             }
 
             return Ok();
+        }
+
+        [HttpGet("get")]
+        public IActionResult GetCityPhoto(string id)
+        {
+            var path = Path.Combine(_hostingEnvironment.WebRootPath, "CityGallery", "User1");
+            var image = System.IO.File.OpenRead(path + "\\id.png");
+
+            return File(image, "image/png");
         }
 
 

@@ -1,4 +1,4 @@
-import { City } from './Model/City';
+import { City } from './Models/City';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 

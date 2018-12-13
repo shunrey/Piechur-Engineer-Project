@@ -1,4 +1,4 @@
-﻿using JurneyTag.Model;
+﻿using JurneyTag.Models;
 using JurneyTag.Resources;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,11 @@ namespace JurneyTag.Utilities.Mappers
                 Description = cityResource.Description,
                 Name = cityResource.Name,
                 MapPositionLatitude = cityResource.Location.MapPositionLatitude,
-                MapPositionLongitude = cityResource.Location.MapPositionLongitude
+                MapPositionLongitude = cityResource.Location.MapPositionLongitude,
+                MetersAboveSeaLevel = cityResource.MetersAboveSeaLevel,
+                Population = cityResource.Population,
+                Area = cityResource.Area,
+                PopulationDensity = cityResource.PopulationDensity
             };
 
             return city;
@@ -30,6 +34,10 @@ namespace JurneyTag.Utilities.Mappers
                 Id = city.Id,
                 Description = city.Description,
                 Name = city.Name,
+                MetersAboveSeaLevel = city.MetersAboveSeaLevel,
+                Population = city.Population,
+                Area = city.Area,
+                PopulationDensity = city.PopulationDensity,
                 Location = new Location
                 {
                     MapPositionLatitude = city.MapPositionLatitude,
@@ -56,6 +64,18 @@ namespace JurneyTag.Utilities.Mappers
                   .ForEach(city => cityResources.Add(MapCityToCityResource(city)));
 
             return cityResources;
+        }
+
+        public static void SetCityToUpdate(City cityFromDb, City updatedCity)
+        {
+            cityFromDb.Description = updatedCity.Description;
+            cityFromDb.MapPositionLatitude = updatedCity.MapPositionLatitude;
+            cityFromDb.MapPositionLongitude = updatedCity.MapPositionLongitude;
+            cityFromDb.Name = updatedCity.Name;
+            cityFromDb.PopulationDensity = updatedCity.PopulationDensity;
+            cityFromDb.MetersAboveSeaLevel = updatedCity.MetersAboveSeaLevel;
+            cityFromDb.Population = updatedCity.Population;
+            cityFromDb.Area = updatedCity.Area;
         }
     }
 }

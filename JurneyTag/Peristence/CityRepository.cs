@@ -1,5 +1,7 @@
 ﻿using JurneyTag.Core;
-using JurneyTag.Model;
+using JurneyTag.Models;
+using JurneyTag.Utilities.Mappers;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,27 +23,36 @@ namespace JurneyTag.Peristence
             if (city == null)
                 throw new ArgumentNullException();
 
-            _serviceDbContext.Cities.Add(city);
+           _serviceDbContext.Cities.Add(city);
         }
 
         public async Task<IEnumerable<City>> GetCities()
         {
-            throw new NotImplementedException();
+            return await _serviceDbContext.Cities.ToListAsync();
         }
 
+
+        public async Task<IEnumerable<City>> GetCitiesByUser(string userId)
+        {
+            return await _serviceDbContext.Cities.Where(c => c.Name == userId).ToListAsync();
+        }
+
+       
         public async Task<City> GetCity(int id)
         {
-            throw new NotImplementedException();
+            return await _serviceDbContext.Cities.SingleOrDefaultAsync(c => c.Id == id);
         }
 
         public void RemoveCity(int id)
         {
-            throw new NotImplementedException();
+            var cityToRemove = _serviceDbContext.Cities.SingleOrDefault(c => c.Id == id);
+            _serviceDbContext.Cities.Remove(cityToRemove);
         }
 
         public void UpdateCity(City city)
         {
-            throw new NotImplementedException();
+            var cityFromDb = _serviceDbContext.Cities.SingleOrDefault(c => c.Id == city.Id);
+            CityMapper.SetCityToUpdate(cityFromDb, city);
         }
     }
 }

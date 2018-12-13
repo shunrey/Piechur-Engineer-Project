@@ -1,4 +1,4 @@
-﻿using JurneyTag.Model;
+﻿using JurneyTag.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +10,7 @@ namespace JurneyTag.Core
     {
         Task<City> GetCity(int id);
         Task<IEnumerable<City>> GetCities();
+        Task<IEnumerable<City>> GetCitiesByUser(string userId);
         void AddCity(City city);
         void RemoveCity(int id);
         void UpdateCity(City city);

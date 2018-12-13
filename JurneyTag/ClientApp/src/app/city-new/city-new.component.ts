@@ -1,5 +1,5 @@
 import { CityService } from './../city.service';
-import { City } from './../Model/City';
+import { City } from './../Models/City';
 import { Icons } from 'quill/ui/icons';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';

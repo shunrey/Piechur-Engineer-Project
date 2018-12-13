@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JurneyTag.Model
+namespace JurneyTag.Models
 {
     public class City
     {
@@ -12,5 +12,9 @@ namespace JurneyTag.Model
         public string Description { get; set; }
         public double MapPositionLatitude { get; set; }
         public double MapPositionLongitude { get; set; }
+        public double MetersAboveSeaLevel { get; set; }
+        public int Population { get; set; }
+        public double Area { get; set; }
+        public double PopulationDensity { get; set; }
     }
 }
