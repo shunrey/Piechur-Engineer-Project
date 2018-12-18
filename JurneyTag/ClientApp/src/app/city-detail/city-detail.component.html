@@ -1,0 +1,24 @@
+<mat-dialog-content style="font-family: Arial, Helvetica, sans-serif">
+  <h1 mat-dialog-title>{{city.name}}</h1>
+
+ <div style="margin-bottom:15%">
+      <img [src]="mainImage" style="width:40%;height:30%; float: left; margin-right: 5%">
+      <br>
+      <p><b>Wysokość nad poziomem morza:</b> {{city.metersAboveSeaLevel}} <p> 
+      <p><b>Liczba mieszkańców:</b> {{city.population}} <p>   
+      <p><b>Powierzchnia:</b> {{city.area}} <p> 
+      <p><b>Gęstość zaludnienia:</b> {{city.populationDensity}} <p>
+      <p><b>Długość geograficzna:</b> {{city.location.mapPositionLongitude}} <p>
+    <p><b>Szerokość geograficzna:</b> {{city.location.mapPositionLatitude}} <p>
+</div>
+<div style="clear:both">
+  <p>
+    {{city.description}}
+  </p>  
+  <div style="width:600px; height: 400px; margin-left: 100px;" id="map"> </div>
+</div>
+
+  
+  
+   
+</mat-dialog-content>

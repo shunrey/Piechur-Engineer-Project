@@ -22,13 +22,18 @@ export class CityNewComponent implements OnInit {
   response : any;
   latitude: number = 50.05481;
   longitude : number = 19.92784;
+
   city : City = {
-    id:0,
+    id: undefined,
     name: '',
     description: '',
+    population: undefined,
+    area: undefined,
+    metersAboveSeaLevel: undefined,
+    populationDensity: undefined,
     location : {
-      mapPositionLatitude : 120,
-      mapPositionLongitude : 120,
+      mapPositionLatitude : undefined,
+      mapPositionLongitude : undefined,
     },
   };
 
@@ -74,8 +79,10 @@ log(){
   console.log("Hi");
 }
 
-save(){
+submit(){
   console.log("Here" + this.city);
+  this.city.location.mapPositionLatitude = this.latitude;
+  this.city.location.mapPositionLongitude = this.longitude;
   this.cityService.addCity(this.city);
 }
 

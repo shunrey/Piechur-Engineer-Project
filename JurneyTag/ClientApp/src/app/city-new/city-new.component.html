@@ -58,26 +58,34 @@
 
         <mat-form-field appearance="outline" class="standard-input-space">
           <mat-label>Wysokość n.p.m</mat-label>
-          <input matInput placeholder="Wysokość n.p.m" name="wojName" #wojName="ngModel" [(ngModel)]="woj" required>
+          <input matInput placeholder="Wysokość n.p.m" name="metersAboveSeaLevel"
+                                                       #metersAboveSeaLevel="ngModel" 
+                                                       [(ngModel)]="city.metersAboveSeaLevel" required>
           <mat-icon matSuffix><i class="fas fa-mountain fa-xs"></i> </mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Liczba mieszkańców</mat-label>
-          <input matInput placeholder="Liczba mieszkańców" name="wojName" #wojName="ngModel" [(ngModel)]="woj" required>
+          <input matInput placeholder="Liczba mieszkańców" name="population" 
+                                                           #population="ngModel" 
+                                                           [(ngModel)]="city.population" required>
           <mat-icon matSuffix><i class="fas fa-users fa-xs"></i> </mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="standard-input-space">
           <mat-label>Powierzchnia (w km<sup>2</sup>)</mat-label>
-          <input matInput placeholder="Powierzchnia" name="wojName" #wojName="ngModel" [(ngModel)]="woj" required>
+          <input matInput placeholder="Powierzchnia" name="area"
+                                                     #area="ngModel" 
+                                                     [(ngModel)]="city.area" required>
 
           <mat-icon matSuffix> <i class="fas fa-map fa-xs"></i> </mat-icon>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
           <mat-label>Gęstość zaludnienia (w os/km<sup>2</sup>)</mat-label>
-          <input matInput placeholder="Gęstość zaludnienia" name="wojName" #wojName="ngModel" [(ngModel)]="woj"
+          <input matInput placeholder="Gęstość zaludnienia" name="populationDensity" 
+                                                            #populationDensity="ngModel" 
+                                                            [(ngModel)]="city.populationDensity"
             required>
           <mat-icon matSuffix><i class="fas fa-users fa-xs"></i> </mat-icon>
         </mat-form-field>
@@ -115,23 +123,23 @@
       <mat-step>
         <ng-template matStepLabel>Zdjęcie</ng-template>
         <mat-label>Wybierz głowne zdjęcie przedstawiające miejscowość z jak najlepszej strony!</mat-label>
-        <image-upload [url]="'https://localhost:5001/api/photo/cityPhoto'"
+        <image-upload [url]="'https://localhost:5001/api/photo/add'"
                       [buttonCaption]="'Wybierz zdjęcie'"
                       [dropBoxMessage]="'Lub przeciągnij je tutaj'"
                       [clearButtonCaption]="'Wyczyść'"
                       [style]="customStyle"
                       [max]="10"
-                      (uploadFinished)="onUploadFinished($event)"> 
+                      > 
         </image-upload>
         <br>
       <mat-label>Wybierz zdjęcie herbu miejscowości</mat-label>
-      <image-upload [url]="'https://localhost:5001/api/photo/cityPhoto'"
+      <image-upload [url]="'https://localhost:5001/api/photo/add'"
                       [buttonCaption]="'Wybierz zdjęcie'"
                       [dropBoxMessage]="'Lub przeciągnij je tutaj'"
                       [clearButtonCaption]="'Wyczyść'"
                       [style]="customStyle"
                       [max]="10"
-                      (uploadFinished)="onUploadFinished($event)"> 
+                       > 
       </image-upload>
       </mat-step>
 
@@ -139,7 +147,7 @@
         <ng-template matStepLabel>Gotowe</ng-template>
         Czy chcesz zatwierdzić zmiany?
         <div>
-          <button mat-button matStepperPrevious>Tak</button>
+          <button mat-button (click)="submit()">Tak</button>
           <button mat-button (click)="stepper.reset()">Zresetuj</button>
         </div>
       </mat-step>

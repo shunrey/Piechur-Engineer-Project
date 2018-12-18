@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using JurneyTag.Core;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,10 +17,12 @@ namespace JurneyTag.Controllers
     public class PhotoController : Controller
     {
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly ICityRepository _cityRepository;
 
-        public PhotoController(IHostingEnvironment hostingEnvironment)
+        public PhotoController(IHostingEnvironment hostingEnvironment, ICityRepository cityRepository)
         {
             _hostingEnvironment = hostingEnvironment;
+            _cityRepository = cityRepository;
         }
 
         [HttpPost("add")]
@@ -44,10 +47,13 @@ namespace JurneyTag.Controllers
         }
 
         [HttpGet("get")]
-        public IActionResult GetCityPhoto(string id)
+        public async Task<IActionResult> GetCityPhoto(int id, string sufix)
         {
+            var city = await _cityRepository.GetCity(id);
+            var cityName = city.Name + sufix;
+
             var path = Path.Combine(_hostingEnvironment.WebRootPath, "CityGallery", "User1");
-            var image = System.IO.File.OpenRead(path + "\\id.png");
+            var image = System.IO.File.OpenRead(path + "\\" + cityName + ".png");
 
             return File(image, "image/png");
         }
