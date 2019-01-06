@@ -1,4 +1,5 @@
-﻿using JurneyTag.Models;
+﻿using JurneyTag.Core.Models;
+using JurneyTag.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,5 +17,6 @@ namespace JurneyTag.Peristence
         }
 
         public DbSet<City> Cities { get; set; }
+        public DbSet<Accomodation> Accomodations { get; set; }
     }
 }
