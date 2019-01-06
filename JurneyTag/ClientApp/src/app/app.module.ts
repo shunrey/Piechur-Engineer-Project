@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ImageUploadModule } from "angular2-image-upload";
 import { MatFileUploadModule } from 'angular-material-fileupload';
 import { CityDetailComponent } from './city-detail/city-detail.component';
+import { RouterModule, Routes } from '@angular/router';
+import { MainComponent } from './main/main.component';
 
 
 
@@ -26,7 +28,8 @@ import { CityDetailComponent } from './city-detail/city-detail.component';
     NavBarComponent,
     CityListComponent,
     CityNewComponent,
-    CityDetailComponent
+    CityDetailComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,12 @@ import { CityDetailComponent } from './city-detail/city-detail.component';
     ImageUploadModule.forRoot(),
     MatFileUploadModule,
     MatCardModule,
-    MatDialogModule
+    MatDialogModule,
+    RouterModule.forRoot([
+      {path: '', component:MainComponent},
+      {path: 'addCity', component: CityNewComponent},
+      {path: 'listCity', component: CityListComponent},
+    ]),
   ],
   providers: [],
   entryComponents: [CityDetailComponent],

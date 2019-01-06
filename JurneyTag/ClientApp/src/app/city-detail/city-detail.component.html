@@ -12,9 +12,9 @@
     <p><b>Szerokość geograficzna:</b> {{city.location.mapPositionLatitude}} <p>
 </div>
 <div style="clear:both">
-  <p>
-    {{city.description}}
-  </p>  
+    <pre>
+        <p [innerHTML]="city.description"> </p>
+    </pre>   
   <div style="width:600px; height: 400px; margin-left: 100px;" id="map"> </div>
 </div>
 

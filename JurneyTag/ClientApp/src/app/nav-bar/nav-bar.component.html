@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+  crossorigin="anonymous">
 <mat-toolbar class="mat-elevation-z7" >
   <span class="logo"> <h1>Piechur.pl</h1></span>
   <span class="fill-small-space"></span>
@@ -15,7 +17,7 @@
   <button mat-icon-button><i class="fa fa-user fa-lg"></i></button>
   
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>Moje miejsca</button>
+    <button mat-menu-item routerLink="/listCity" routerLinkActive="active">Moje miejsca</button>
     <button mat-menu-item>Moje zakwaterowania</button>
     <button mat-menu-item>Moje atrakcje</button>
   </mat-menu>
@@ -27,25 +29,63 @@
 <br>
 
 <mat-accordion [multi]="true" [displayMode]="flat" (openAll)="openAll()">
+    <mat-expansion-panel  [expanded]="true">
+        <mat-expansion-panel-header>
+          <b>Pogoda</b>
+        </mat-expansion-panel-header> 
+        Kraków <br>
+        <table>
+          <tr>
+            <td>Pn</td>
+            <td>Wt</td>
+            <td>Śr</td>
+            <td>Czw</td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-cloud-sun fa-2x"></i></td>
+            <td><i class="far fa-snowflake fa-2x"></i></td>
+            <td><i class="far fa-snowflake fa-2x"></i></td>
+            <td><i class="fas fa-cloud-sun fa-2x"></i></td>
+          </tr>
+          <tr>
+            <td>0 &#8451; </td>
+            <td>-1 &#8451;</td>
+            <td>-3 &#8451; </td>
+            <td>-6 &#8451; </td>
+          </tr>
+        </table>   
+        <br>
+        Warszawa <br>
+        <table>
+          <tr>
+            <td>Pn</td>
+            <td>Wt</td>
+            <td>Śr</td>
+            <td>Czw</td>
+          </tr>
+          <tr>
+            <td><i class="fas fa-cloud-sun fa-2x"></i></td>
+            <td><i class="fas fa-cloud-sun fa-2x"></i></td>
+            <td><i class="far fa-snowflake fa-2x"></i></td>
+            <td><i class="fas fa-cloud-sun fa-2x"></i></td>
+          </tr>
+          <tr>
+            <td>1 &#8451; </td>
+            <td>0 &#8451;</td>
+            <td>-2 &#8451; </td>
+            <td>-3 &#8451; </td>
+          </tr>
+        </table>
+      </mat-expansion-panel>
     <mat-expansion-panel [expanded]="true">
       <mat-expansion-panel-header>
-       <b>Zaawansowane Szukanie</b> 
+       <b>Dodatkowe Informacje</b> 
       </mat-expansion-panel-header>
-      Input1 <br>
-      Input2 <br>
-      Input3 <br>
-      <br>
-      Input4 <br>
-      Input5 <br>
-      Input6 <br>
+      Liczba zarejestrowanych użytkowników: 1 <br>
+      Liczba zalogowanych użytkowników: 1 <br>
+      Goście: 1 <br>
     </mat-expansion-panel>
-    <mat-expansion-panel  [expanded]="true">
-      <mat-expansion-panel-header>
-        <b>Pogoda</b>
-      </mat-expansion-panel-header> 
-      Forecast for Krakow <br>
-      Forecast for Warsaw <br>
-    </mat-expansion-panel>
+ 
   </mat-accordion>
 
 

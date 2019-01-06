@@ -58,3 +58,11 @@ mat-expansion-panel {
 	position: absolute; left: 4px; top: 2px;
 	color: white;   
 }
+
+#marg{
+    padding-right: 15px;
+}
+
+td {
+    padding-right: 15px;
+}

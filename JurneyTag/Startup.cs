@@ -23,11 +23,9 @@ namespace JurneyTag
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-          
-
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddDbContext<ServiceDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
+            services.AddDbContext<ServiceDbContext>(options => options.UseSqlServer
+                                                              (Configuration.GetConnectionString("Default")));
           
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICityRepository, CityRepository>();
@@ -58,7 +56,7 @@ namespace JurneyTag
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-           // app.UseCors("AllowAll");
+           
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -73,9 +71,6 @@ namespace JurneyTag
 
             app.UseSpa(spa =>
             {
-                // To learn more about options for serving an Angular SPA from ASP.NET Core,
-                // see https://go.microsoft.com/fwlink/?linkid=864501
-
                 spa.Options.SourcePath = "ClientApp";
 
                 if (env.IsDevelopment())
