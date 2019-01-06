@@ -10,7 +10,7 @@ namespace JurneyTag.Core
     {
         Task<Accomodation> GetAccomodation(int id);
         Task<IEnumerable<Accomodation>> GetAccomodations();
-        Task<IEnumerable<Accomodation>> GetAccomodationByUser(string userId);
+        Task<IEnumerable<Accomodation>> GetAccomodationsByUser(string userId);
         void AddAccomodation(Accomodation accomodation);
         void RemoveAccomodation(int id);
         void UpdateAccomodation(Accomodation accomodation);

@@ -7,34 +7,34 @@ using System.Threading.Tasks;
 
 namespace JurneyTag.Peristence
 {
-    public class AccomodationRepository : IAccomodationRepository
+    public class AttractionRepository : IAttractionRepository
     {
-        public void AddAccomodation(Accomodation accomodation)
+        public void AddAttraction(Attraction attraction)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Accomodation> GetAccomodation(int id)
+        public Task<Attraction> GetAttraction(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Accomodation>> GetAccomodationsByUser(string userId)
+        public Task<IEnumerable<Attraction>> GetAttractions()
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Accomodation>> GetAccomodations()
+        public Task<IEnumerable<Attraction>> GetAttractionsByUser(string userId)
         {
             throw new NotImplementedException();
         }
 
-        public void RemoveAccomodation(int id)
+        public void RemoveAttraction(int id)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateAccomodation(Accomodation accomodation)
+        public void UpdateAttraction(Attraction attraction)
         {
             throw new NotImplementedException();
         }
