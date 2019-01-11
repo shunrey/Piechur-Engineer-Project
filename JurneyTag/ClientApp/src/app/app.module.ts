@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule, MatMenuModule, MatButtonModule, MatExpansionModule, MatIconModule, MatInputModule, MatStepperModule, MatRadioModule, MatDividerModule, MatGridListModule, MatCardModule, MatDialogModule} from '@angular/material';
+import {MatToolbarModule, MatMenuModule, MatButtonModule, MatExpansionModule, MatIconModule, MatInputModule, MatStepperModule, MatRadioModule, MatDividerModule, MatGridListModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTableModule} from '@angular/material';
 import { CityListComponent } from './city-list/city-list.component';
 import { CityNewComponent } from './city-new/city-new.component';
 import { FormsModule } from '@angular/forms';
@@ -19,6 +19,9 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
 import { CityDetailComponent } from './city-detail/city-detail.component';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main/main.component';
+import { AccomodationNewComponent } from './accomodation-new/accomodation-new.component';
+import { AccomodationRoomComponent } from './accomodation-room/accomodation-room.component';
+import { AccomodationAlimentationComponent } from './accomodation-alimentation/accomodation-alimentation.component';
 
 
 
@@ -29,7 +32,10 @@ import { MainComponent } from './main/main.component';
     CityListComponent,
     CityNewComponent,
     CityDetailComponent,
-    MainComponent
+    MainComponent,
+    AccomodationNewComponent,
+    AccomodationRoomComponent,
+    AccomodationAlimentationComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +47,7 @@ import { MainComponent } from './main/main.component';
     MatIconModule,
     MatInputModule,
     MatStepperModule,
+    MatSnackBarModule,
     MatRadioModule,
     FormsModule,
     EditorModule,
@@ -50,6 +57,8 @@ import { MainComponent } from './main/main.component';
     FroalaViewModule.forRoot(),
     MatDividerModule,
     MatGridListModule,
+    MatSelectModule,
+    MatTableModule,
     HttpClientModule,
     ImageUploadModule.forRoot(),
     MatFileUploadModule,
@@ -59,10 +68,11 @@ import { MainComponent } from './main/main.component';
       {path: '', component:MainComponent},
       {path: 'addCity', component: CityNewComponent},
       {path: 'listCity', component: CityListComponent},
+      {path: 'addAccomodation', component: AccomodationNewComponent}
     ]),
   ],
   providers: [],
-  entryComponents: [CityDetailComponent],
+  entryComponents: [CityDetailComponent, AccomodationRoomComponent, AccomodationAlimentationComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

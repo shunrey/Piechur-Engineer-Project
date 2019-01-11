@@ -1,0 +1,228 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+  crossorigin="anonymous">
+
+<body style="margin-left: 25%">
+  <h2 style="color: darkslategrey">
+    Dodaj nowe zakwaterowanie
+  </h2>
+  {{accomodation | json}}
+
+  <form #f1="ngForm">
+    <mat-horizontal-stepper #stepper (selectionChange)="selectionChange($event)">
+      <ng-template matStepperIcon="edit">
+        <i class="fa fa-check"></i>
+      </ng-template>
+      <mat-step [stepControl]="f1">
+        <ng-template matStepLabel>Głowne informacje</ng-template>
+
+        <mat-form-field appearance="outline" class="standard-input-space">
+          <mat-label>Podaj nazwę zakwaterowania</mat-label>
+          <input matInput placeholder="Nazwa zakwaterowania" name="accomodationName" [(ngModel)]="accomodation.name">
+          <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-select placeholder="Wybierz typ zakwaterowania" name="accomodationType"  [(ngModel)]="accomodation.type">
+                <mat-option *ngFor="let type of accomodationTypes" [value]="type">
+                  {{type}}
+                </mat-option>
+              </mat-select>
+            <mat-icon matSuffix><i class="fas fa-list-ul fa-xs"></i> </mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+              <mat-select placeholder="Wybierz standard" name="accomodationStandard"  [(ngModel)]="accomodation.standard">
+                  <mat-option *ngFor="let type of accomodationStandards" [value]="type">
+                    {{type}}
+                  </mat-option>
+                </mat-select>
+              <mat-icon matSuffix><i class="fas fa-list-ul fa-xs"></i> </mat-icon>
+          </mat-form-field>
+
+            <mat-divider></mat-divider>
+            <mat-label>Adres zakwaterowania</mat-label>
+            <br>
+            <br>
+            <mat-form-field appearance="outline" class="standard-input-space">
+                <mat-label>Podaj nazwę miasta</mat-label>
+                <input matInput placeholder="Miasto" name="accomodationCity"  [(ngModel)]="accomodation.address.city">
+                <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                  <mat-label>Podaj nazwę ulicy</mat-label>
+                  <input matInput placeholder="Ulica" name="accomodationStreet"  [(ngModel)]="accomodation.address.street">
+                  <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="standard-input-space">
+                  <mat-label>Podaj numer budynku</mat-label>
+                  <input matInput placeholder="Numer budynku" name="accomodationBuild"  [(ngModel)]="accomodation.address.build">
+                  <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+              </mat-form-field>
+
+              <mat-divider></mat-divider>
+              <mat-label>Opis zakwaterowania</mat-label>
+              <br>
+              <br>
+
+        <quill-editor [style]="{height: '350px'}" [placeholder]="'Tutaj wstaw krótki opis'" name="accomodationDescription"  [(ngModel)]="accomodation.description" >
+          <div quill-editor-toolbar>
+            <span class="ql-formats">
+              <select class="ql-header" [title]="'Styl'">
+                <option selected>Normalna</option>
+                <option value="3">Nagłówek 3</option>
+                <option value="2">Nagłówek 2</option>
+                <option value="1">Nagłówek 1</option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-bold" [title]="'Pogrubiona'"></button>
+              <button class="ql-italic" [title]="'Kursywa'"></button>
+              <button class="ql-underline" [title]="'Podkreślenie'"></button>
+              <button class="ql-list" value="ordered" [title]="'Lista posortowana'"></button>
+              <button class="ql-list" value="bullet" [title]="'Lista punktowa'"></button>
+            </span>
+            <span class="ql-formats">
+              <select class="ql-align" [title]="'Wyrównanie'">
+                <option selected></option>
+                <option value="center"></option>
+                <option value="right"></option>
+                <option value="justify"></option>
+              </select>
+            </span>
+          </div>
+        </quill-editor>
+      <button (click)="save()">Save</button>
+      </mat-step>
+
+      <mat-step [stepControl]="f1" (click)="log()">
+        <ng-template matStepLabel>Dodatkowe infromacje</ng-template>
+        <mat-label>Koordynaty (ustawianie: miasto</mat-label>
+        <br>
+        <mat-label style="font-size: 70%">Jeśli błędne lub nie znaleziono, wprowadź nowe wartośći: </mat-label>
+        <br>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Długość geograficzna</mat-label>
+          <input matInput placeholder="Długość geograficzna" name="longitude" [(ngModel)]="longitude"
+            required>
+          <mat-icon matSuffix><i class="fas fa-users fa-xs"></i> </mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="outline">
+          <mat-label>Szerokość geograficzna</mat-label>
+          <input matInput placeholder="Szerokość geograficzna" name="latitude" [(ngModel)]="latitude"  
+            required>
+          <mat-icon matSuffix><i class="fas fa-users fa-xs"></i> </mat-icon>
+        </mat-form-field>
+        <span style="float:right; margin-top: -13%;">
+            <div style="z-index: 1 !important" id="map"></div>
+        </span>
+        <mat-divider style="margin-top: 30%"></mat-divider>
+        <mat-label>Pokoje</mat-label>
+        <br>
+        <br>
+        <table mat-table [dataSource]="dataSourceRooms"  style="width: 700px" class="example-container mat-elevation-z8">
+            <ng-container matColumnDef="Standard">
+              <th mat-header-cell *matHeaderCellDef> Standard </th>
+              <td mat-cell *matCellDef="let room"> {{room.standard}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="Rodzaj">
+              <th mat-header-cell *matHeaderCellDef> Rodzaj </th>
+              <td mat-cell *matCellDef="let room"> {{room.type}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="Ilość">
+              <th mat-header-cell *matHeaderCellDef> Ilość </th>
+              <td mat-cell *matCellDef="let room"> {{room.number}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="Cena od osoby">
+              <th mat-header-cell *matHeaderCellDef> Cena od osoby </th>
+              <td mat-cell *matCellDef="let room"> {{room.price}} zł </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Usuń">
+                <mat-header-cell  *matHeaderCellDef >  </mat-header-cell>
+                <mat-cell *matCellDef="let room" >
+                     <button mat-button (click)="removeRoom(room)" >Usuń</button>
+                </mat-cell>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsRooms"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsRooms;"></tr>
+          </table>
+
+        <button style="float:right; margin-top: -8%;" mat-fab color="primary" (click)="addRoom()">Dodaj</button>
+        <mat-divider style="margin-top: 15%"></mat-divider>
+        <mat-label>Wyżywienie</mat-label>
+        <br>
+        <br>
+
+        <table mat-table [dataSource]="dataSourceAlimentations"  style="width: 700px" class="mat-elevation-z8">
+          <ng-container matColumnDef="Rodzaj">
+            <th mat-header-cell *matHeaderCellDef> Rodzaj </th>
+            <td mat-cell *matCellDef="let alimentation"> {{alimentation.type}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="W cenie pokoju">
+            <th mat-header-cell *matHeaderCellDef> W cenie pokoju </th>
+            <td mat-cell *matCellDef="let alimentation"> {{alimentation.isInOffert}} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="Dodatkowa cena">
+            <th mat-header-cell *matHeaderCellDef> Dodatkowa cena </th>
+            <td mat-cell *matCellDef="let alimentation"> {{alimentation.addPrice}} </td>
+          </ng-container>
+        
+          <ng-container matColumnDef="Usuń">
+              <mat-header-cell  *matHeaderCellDef >  </mat-header-cell>
+              <mat-cell *matCellDef="let alimentation" >
+                   <button mat-button (click)="removeAlimentation(alimentation)" >Usuń</button>
+              </mat-cell>
+            </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsAlimentation"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsAlimentation;"></tr>
+        </table>
+
+        <button style="float:right; margin-top: -8%;" mat-fab color="primary" (click)="addAlimentation()">Dodaj</button>
+
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Zdjęcie</ng-template>
+        <mat-label>Wybierz głowne zdjęcie przedstawiające miejscowość z jak najlepszej strony!</mat-label>
+        <image-upload [url]="'https://localhost:5001/api/photo/add'"
+                      [buttonCaption]="'Wybierz zdjęcie'"
+                      [dropBoxMessage]="'Lub przeciągnij je tutaj'"
+                      [clearButtonCaption]="'Wyczyść'"
+                      [style]="customStyle"
+                      [max]="10"
+                      > 
+        </image-upload>
+        <br>
+      <mat-label>Wybierz zdjęcie herbu miejscowości</mat-label>
+      <image-upload [url]="'https://localhost:5001/api/photo/add'"
+                      [buttonCaption]="'Wybierz zdjęcie'"
+                      [dropBoxMessage]="'Lub przeciągnij je tutaj'"
+                      [clearButtonCaption]="'Wyczyść'"
+                      [style]="customStyle"
+                      [max]="10"
+                       > 
+      </image-upload>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Gotowe</ng-template>
+        Czy chcesz zatwierdzić zmiany?
+        <div>
+          <button mat-button (click)="submit()">Tak</button>
+          <button mat-button (click)="stepper.reset()">Zresetuj</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </form>
+
+</body>

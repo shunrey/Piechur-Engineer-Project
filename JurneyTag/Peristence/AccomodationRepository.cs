@@ -42,7 +42,8 @@ namespace JurneyTag.Peristence
 
         public void RemoveAccomodation(int id)
         {
-            throw new NotImplementedException();
+           var accomodationToRemove = _serviceDbContext.Accomodations.SingleOrDefault(a => a.Id == id);
+            _serviceDbContext.Accomodations.Remove(accomodationToRemove);
         }
 
         public void UpdateAccomodation(Accomodation accomodation)

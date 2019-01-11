@@ -25,7 +25,9 @@ namespace JurneyTag
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<ServiceDbContext>(options => options.UseSqlServer
-                                                              (Configuration.GetConnectionString("Default")));
+                                                              (Configuration.
+                                                              GetConnectionString
+                                                                         ("Default")));
           
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<ICityRepository, CityRepository>();

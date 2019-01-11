@@ -44,5 +44,13 @@ namespace JurneyTag.Controllers
             return Ok(citiesResources);
         }
 
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteCity(int id)
+        {
+            _cityRepository.RemoveCity(id);
+            _unitOfWork.UpdateDatabase();
+            return Ok();
+        }
+
     }
 }

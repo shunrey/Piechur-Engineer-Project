@@ -12,13 +12,14 @@
     </h2>
     
    
-    <div *ngFor="let city of cities">
-           <mat-card style="width:25%; float: left; margin-left: 5%" (click)="openDialog(city)">
+    <div *ngFor="let city of citiesList">
+       
+           <mat-card style="width:25%; float: left; margin-left: 5%" >
             <mat-card-title style="text-align: center">{{city.name}}</mat-card-title>
-            <img [src]="imageToShow" mat-card-image>
+            <img class="light" (click)="openDialog(city)" style="height:220px" [src]="city.mainImage" mat-card-image>
             <mat-card-actions style="text-align: center">
                 <button mat-button>Edytuj</button>
-                <button mat-button>Usuń</button>
+                <button mat-button (click)= "removeCity(city.id)" >Usuń</button>
             </mat-card-actions>
             </mat-card>
             

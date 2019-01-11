@@ -1,0 +1,31 @@
+<mat-dialog-content style="font-family: Arial, Helvetica, sans-serif">
+  <h1 mat-dialog-title>Dodaj pokój</h1>
+<form>
+  <mat-form-field appearance="outline" style="margin-left:5%;margin-right: 15%">
+      <mat-select placeholder="Wybierz rodzaj" name="type" [(ngModel)]="alimentation.type">
+          <mat-option *ngFor="let type of aliemntationTypes" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      <mat-icon matSuffix><i class="fas fa-list-ul fa-xs"></i> </mat-icon>
+  </mat-form-field>
+  <mat-form-field appearance="outline" style="margin-right: 5%">
+      <mat-select placeholder="Czy w cenie?" name="isInOffert"  [(ngModel)]="alimentation.isInOffert">
+          <mat-option *ngFor="let type of alimentationInOffert" [value]="type" >
+            {{type}}
+          </mat-option>
+        </mat-select>
+      <mat-icon matSuffix><i class="fas fa-list-ul fa-xs"></i> </mat-icon>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline"  style="margin-left:5%;margin-right: 15%">
+      <mat-label>Dodatkowa cena (jeśli w cenie - brak)</mat-label>
+      <input matInput placeholder="Dodatkowa cena" [(ngModel)]="alimentation.addPrice" name="addPrice">
+      <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+    </mat-form-field>
+  <button mat-stroked-button color="primary" (click)="submit()" 
+          style="float: right; margin-top: -5%">Zapisz</button>
+</form>
+ 
+</mat-dialog-content>
+

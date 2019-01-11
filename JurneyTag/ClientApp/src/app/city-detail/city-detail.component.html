@@ -2,18 +2,20 @@
   <h1 mat-dialog-title>{{city.name}}</h1>
 
  <div style="margin-bottom:15%">
-      <img [src]="mainImage" style="width:40%;height:30%; float: left; margin-right: 5%">
+      <img [src]="mainImage" style="width:450px;height:350px; float: left; margin-right: 5%">
       <br>
-      <p><b>Wysokość nad poziomem morza:</b> {{city.metersAboveSeaLevel}} <p> 
+      <p><b>Wysokość nad poziomem morza:</b> {{city.metersAboveSeaLevel}} n.p.m.<p> 
       <p><b>Liczba mieszkańców:</b> {{city.population}} <p>   
-      <p><b>Powierzchnia:</b> {{city.area}} <p> 
-      <p><b>Gęstość zaludnienia:</b> {{city.populationDensity}} <p>
-      <p><b>Długość geograficzna:</b> {{city.location.mapPositionLongitude}} <p>
-    <p><b>Szerokość geograficzna:</b> {{city.location.mapPositionLatitude}} <p>
+      <p><b>Powierzchnia:</b> {{city.area}} km<sup>2</sup> <p> 
+      <p><b>Gęstość zaludnienia:</b> {{city.populationDensity}} os/km<sup>2</sup> <p>
+      <p><b>Długość geograficzna:</b> {{city.location.mapPositionLongitude}}&deg;W <p>
+    <p><b>Szerokość geograficzna:</b> {{city.location.mapPositionLatitude}}&deg;N <p>
 </div>
-<div style="clear:both">
+<div style="clear:both;">
+  <br>
+  <h1 style="text-align: center" mat-dialog-title>Opis</h1>
     <pre>
-        <p [innerHTML]="city.description"> </p>
+        <p [innerHTML]="city.description" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px;"> </p>
     </pre>   
   <div style="width:600px; height: 400px; margin-left: 100px;" id="map"> </div>
 </div>

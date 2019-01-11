@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
   crossorigin="anonymous">
-<mat-toolbar class="mat-elevation-z7" >
+<mat-toolbar class="mat-elevation-z7" style="z-index: 100 !important" >
   <span class="logo"> <h1>Piechur.pl</h1></span>
   <span class="fill-small-space"></span>
   <span class="fill-small-space"></span>
@@ -9,7 +9,7 @@
     <input matInput placeholder="Miejscowość">
   </mat-form-field>
   <span class="fill-space"></span>
-  <button mat-button [matMenuTriggerFor]="menu">Moi klienci </button>
+  <button mat-button  [matMenuTriggerFor]="menu">Moi klienci </button>
   <button mat-button [matMenuTriggerFor]="menu">Mój Katalog</button>
   <span class="fill-small-space"></span>
   <button mat-icon-button><i class="fa fa-bell fa-lg"></i></button>
@@ -28,7 +28,7 @@
 <br>
 <br>
 
-<mat-accordion [multi]="true" [displayMode]="flat" (openAll)="openAll()">
+<mat-accordion [multi]="true"  [displayMode]="flat" (openAll)="openAll()">
     <mat-expansion-panel  [expanded]="true">
         <mat-expansion-panel-header>
           <b>Pogoda</b>

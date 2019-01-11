@@ -9,4 +9,5 @@ export interface City {
     area : number;
     populationDensity: number;
     location : MapLocation;
+    mainImage : any;
 }

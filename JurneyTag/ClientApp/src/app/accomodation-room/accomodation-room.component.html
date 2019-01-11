@@ -1,0 +1,35 @@
+<mat-dialog-content style="font-family: Arial, Helvetica, sans-serif">
+    <h1 mat-dialog-title>Dodaj pokój</h1>
+ <form>
+    <mat-form-field appearance="outline" style="margin-left:5%;margin-right: 15%">
+        <mat-select placeholder="Wybierz standard" name="standard" [(ngModel)]="room.standard">
+            <mat-option *ngFor="let standard of roomStandards" [value]="standard">
+              {{standard}}
+            </mat-option>
+          </mat-select>
+        <mat-icon matSuffix><i class="fas fa-list-ul fa-xs"></i> </mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline" style="margin-right: 5%">
+        <mat-select placeholder="Wybierz rodzaj pokoju" name="type"  [(ngModel)]="room.type">
+            <mat-option *ngFor="let type of roomTypes" [value]="type" >
+              {{type}}
+            </mat-option>
+          </mat-select>
+        <mat-icon matSuffix><i class="fas fa-list-ul fa-xs"></i> </mat-icon>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline"  style="margin-left:5%;margin-right: 15%">
+        <mat-label>Liczba pokojów ogółem</mat-label>
+        <input matInput placeholder="Liczba pokojów" [(ngModel)]="room.number" name="number">
+        <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+      </mat-form-field>
+   <mat-form-field appearance="outline" style="margin-right: 5%">
+          <mat-label>Cena od osoby (zł) </mat-label>
+          <input matInput placeholder="Cena od osoby" [(ngModel)]="room.price" name="price">
+          <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" (click)="submit()" 
+            style="float: right; margin-top: -5%">Zapisz</button>
+</form>
+   
+</mat-dialog-content>

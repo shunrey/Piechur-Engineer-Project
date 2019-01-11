@@ -10,6 +10,7 @@ import { ResponseContentType } from '@angular/http';
 export class CityService {
   
   private urlCityAdd : string = "https://localhost:5001/api/city/add";
+  private urlCityRemove : string = "https://localhost:5001/api/city/delete"
   private urlCityGetAll : string = "https://localhost:5001/api/city/getAll";
   private urlGetMainPhoto : string = "https://localhost:5001/api/photo/get"
 
@@ -17,17 +18,24 @@ export class CityService {
 
   addCity(city:City){
       console.log(JSON.stringify(city));
-      this.httpClient.post(this.urlCityAdd, city)
-                     .subscribe(resp => console.log(resp));
+     return this.httpClient.post(this.urlCityAdd, city);
+                     
   }
 
   getAllCities(){
     return this.httpClient.get(this.urlCityGetAll);
   }
 
-  getMainPhoto(cityName:string){
-     return this.httpClient.get(this.urlGetMainPhoto + '?id=' + cityName +'&sufix=Main',{
+  getMainPhoto(cityId:number){
+     return this.httpClient.get(this.urlGetMainPhoto + '?id=' + cityId +'&sufix=Main',{
        responseType: 'blob'
      });
+  }
+
+  removeCity(id : number){
+    console.log(id);
+    console.log(this.urlCityRemove + '/' + id);
+      return this.httpClient.delete(this.urlCityRemove + '/' + id);
+      
   }
 }

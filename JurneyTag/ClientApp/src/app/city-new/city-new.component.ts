@@ -3,6 +3,8 @@ import { City } from './../Models/City';
 import { Icons } from 'quill/ui/icons';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 declare let L;
 declare let tomtom: any;
@@ -14,7 +16,8 @@ declare let tomtom: any;
 })
 export class CityNewComponent implements OnInit {
  
-  constructor(private httpClient : HttpClient, private cityService : CityService) { }
+  constructor(private httpClient : HttpClient, private cityService : CityService, 
+              public snackBar: MatSnackBar, private router : Router) { }
   
   map:any;
   marker: any;
@@ -22,6 +25,7 @@ export class CityNewComponent implements OnInit {
   response : any;
   latitude: number = 50.05481;
   longitude : number = 19.92784;
+ 
 
   city : City = {
     id: undefined,
@@ -35,6 +39,7 @@ export class CityNewComponent implements OnInit {
       mapPositionLatitude : undefined,
       mapPositionLongitude : undefined,
     },
+    mainImage: undefined
   };
 
   ngOnInit() {
@@ -83,7 +88,12 @@ submit(){
   console.log("Here" + this.city);
   this.city.location.mapPositionLatitude = this.latitude;
   this.city.location.mapPositionLongitude = this.longitude;
-  this.cityService.addCity(this.city);
+  this.cityService.addCity(this.city).subscribe(resp => {
+    this.snackBar.open("Dodano nową miejscowość do katalogu", "Zamknij", {
+      duration: 2000,
+    });
+    this.router.navigate(['/listCity']);
+  })
 }
 
 getCoordinates(){
