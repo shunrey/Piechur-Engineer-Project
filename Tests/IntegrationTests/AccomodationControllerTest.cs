@@ -32,8 +32,6 @@ namespace Tests.IntegrationTests
             {
                 Name = "AcomodationName_1",
                 Description = "AccomodationDesciption_1",
-                Stars = 3,
-                Alimentation = "Alimentation1_Alimentation2",
                 Location = new Location
                 {
                     MapPositionLatitude = 90.4,
@@ -55,8 +53,6 @@ namespace Tests.IntegrationTests
             var accomodationFromDb = await accomodationRepository.GetAccomodation(accomodation.Id);
             accomodationFromDb.Name.Should().Be("AcomodationName_1");
             accomodationFromDb.Description.Should().Be("AccomodationDesciption_1");
-            accomodationFromDb.Stars.Should().Be(3);
-            accomodationFromDb.Alimentation.Should().Be("Alimentation1_Alimentation2");
             accomodationFromDb.MapPositionLatitude.Should().Be(90.4);
             accomodationFromDb.MapPositionLongitude.Should().Be(128.123);
             accomodationFromDb.Type.Should().Be("AccomodationType_1");

@@ -18,14 +18,17 @@ namespace JurneyTag.Controllers
     {
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly ICityRepository _cityRepository;
+        private readonly IAccomodationRepository _accomodationRepository;
 
-        public PhotoController(IHostingEnvironment hostingEnvironment, ICityRepository cityRepository)
+        public PhotoController(IHostingEnvironment hostingEnvironment, ICityRepository cityRepository, 
+                                                                       IAccomodationRepository accomodationRepository)
         {
             _hostingEnvironment = hostingEnvironment;
             _cityRepository = cityRepository;
+            _accomodationRepository = accomodationRepository;
         }
 
-        [HttpPost("add")]
+        [HttpPost("addCityPhoto")]
         public async Task<IActionResult> AddCityPhoto(IFormFile image)
         {
             var path = Path.Combine(_hostingEnvironment.WebRootPath, "CityGallery", "User1");
@@ -46,7 +49,28 @@ namespace JurneyTag.Controllers
             return Ok();
         }
 
-        [HttpGet("get")]
+        [HttpPost("addAccomodationPhoto")]
+        public async Task<IActionResult> AddAccomodationPhoto(IFormFile image)
+        {
+            var path = Path.Combine(_hostingEnvironment.WebRootPath, "AccomodationGallery", "User1");
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            if (image.Length > 0)
+            {
+                using (var fileStream = new FileStream(Path.Combine(path, image.FileName), FileMode.Create))
+                {
+                    await image.CopyToAsync(fileStream);
+                }
+            }
+
+            return Ok();
+        }
+
+        [HttpGet("getCityPhoto")]
         public async Task<IActionResult> GetCityPhoto(int id, string sufix)
         {
             var city = await _cityRepository.GetCity(id);
@@ -54,6 +78,18 @@ namespace JurneyTag.Controllers
 
             var path = Path.Combine(_hostingEnvironment.WebRootPath, "CityGallery", "User1");
             var image = System.IO.File.OpenRead(path + "\\" + cityName + ".png");
+
+            return File(image, "image/png");
+        }
+
+        [HttpGet("getAccdPhoto")]
+        public async Task<IActionResult> GetAccomodationPhoto(int id, string sufix)
+        {
+            var accd = await _accomodationRepository.GetAccomodation(id);
+            var accdName = accd.AddressCity + sufix;
+
+            var path = Path.Combine(_hostingEnvironment.WebRootPath, "AccomodationGallery", "User1");
+            var image = System.IO.File.OpenRead(path + "\\" + accdName + ".png");
 
             return File(image, "image/png");
         }

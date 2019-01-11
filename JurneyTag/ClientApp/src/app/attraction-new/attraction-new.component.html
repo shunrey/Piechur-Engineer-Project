@@ -1,0 +1,161 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+  crossorigin="anonymous">
+
+<body style="margin-left: 25%">
+  {{attraction | json}}
+  <h2 style="color: darkslategrey">
+    Dodaj nową atrakcję
+  </h2>
+
+  <form #f1="ngForm">
+    <mat-horizontal-stepper #stepper (selectionChange)="selectionChange($event)">
+      <ng-template matStepperIcon="edit">
+        <i class="fa fa-check"></i>
+      </ng-template>
+      <mat-step [stepControl]="f1">
+        <ng-template matStepLabel>Głowne informacje</ng-template>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Podaj nazwę atrakcji</mat-label>
+
+          <input matInput placeholder="Nazwa atrakcji" name="attractionName" [(ngModel)]="attraction.name" 
+            required>
+          <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+        </mat-form-field>
+
+        <mat-divider></mat-divider>
+            <mat-label>Adres atrakcji</mat-label>
+            <br>
+            <br>
+            <mat-form-field appearance="outline" class="standard-input-space" >
+                <mat-label>Podaj nazwę miasta</mat-label>
+                <input matInput placeholder="Miasto" name="attractionCity" [(ngModel)]="attraction.address.city" >
+                <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline">
+                  <mat-label>Podaj nazwę ulicy</mat-label>
+                  <input matInput placeholder="Ulica"  name="attractionStreet" [(ngModel)]="attraction.address.street" >
+                  <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="standard-input-space" >
+                  <mat-label>Podaj numer budynku</mat-label>
+                  <input matInput placeholder="Numer budynku" name="attractionBuild" [(ngModel)]="attraction.address.build">
+                  <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+              </mat-form-field>
+
+              <mat-divider></mat-divider>
+              <mat-label>Opis Atrakcji</mat-label>
+              <br>
+              <br>
+
+        <quill-editor [style]="{height: '350px'}" [placeholder]="'Tutaj wstaw opis atrakcji'" name="attractionDesc" [(ngModel)]="attraction.description">
+          <div quill-editor-toolbar>
+            <span class="ql-formats">
+              <select class="ql-header" [title]="'Styl'">
+                <option selected>Normalna</option>
+                <option value="3">Nagłówek 3</option>
+                <option value="2">Nagłówek 2</option>
+                <option value="1">Nagłówek 1</option>
+              </select>
+            </span>
+            <span class="ql-formats">
+              <button class="ql-bold" [title]="'Pogrubiona'"></button>
+              <button class="ql-italic" [title]="'Kursywa'"></button>
+              <button class="ql-underline" [title]="'Podkreślenie'"></button>
+              <button class="ql-list" value="ordered" [title]="'Lista posortowana'"></button>
+              <button class="ql-list" value="bullet" [title]="'Lista punktowa'"></button>
+            </span>
+            <span class="ql-formats">
+              <select class="ql-align" [title]="'Wyrównanie'">
+                <option selected></option>
+                <option value="center"></option>
+                <option value="right"></option>
+                <option value="justify"></option>
+              </select>
+            </span>
+          </div>
+        </quill-editor>
+      <button (click)="save()">Save</button>
+      </mat-step>
+
+
+      <mat-step [stepControl]="f1" (click)="log()">
+        <ng-template matStepLabel>Dodatkowe infromacje</ng-template>
+
+          <mat-label>Koordynaty (ustawianie: {{attraction.city}} {{attraction.street}} {{attraction.build}} )</mat-label>
+          <br>
+          <mat-label style="font-size: 70%">Jeśli błędne lub nie znaleziono, wprowadź nowe wartośći: </mat-label>
+          <br>
+          <br>
+          <mat-form-field appearance="outline">
+            <mat-label>Długość geograficzna</mat-label>
+            <input matInput placeholder="Długość geograficzna"  name="attractionLongitude" [(ngModel)]="longitude"
+              required>
+            <mat-icon matSuffix><i class="fas fa-users fa-xs"></i> </mat-icon>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline" >
+            <mat-label>Szerokość geograficzna</mat-label>
+            <input matInput placeholder="Szerokość geograficzna" name="attractionLatitude" [(ngModel)]="latitude"
+              required>
+            <mat-icon matSuffix><i class="fas fa-users fa-xs"></i> </mat-icon>
+          </mat-form-field>
+  
+        <span style="float:right; margin-top: -13%">
+          <div id="map" style="z-index: 1 !important"></div>
+        </span>
+
+        <mat-divider style="margin-top: 25%"></mat-divider>
+        <mat-label>Ceny biletów i inne informacje</mat-label>
+        <br>
+        <br>
+        <mat-form-field appearance="outline" class="standard-input-space">
+            <mat-label>Cena biletu zwykłego (w zł)</mat-label>
+            <input matInput placeholder="Bilet zwykły"  name="attractionTicket" [(ngModel)]="attraction.ticketPrice"
+              required>
+            <mat-icon matSuffix><i class="fas fa-users fa-xs"></i> </mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Cena biletu ulgowego (w zł)</mat-label>
+            <input matInput placeholder="Bilet ulgowy"  name="attractionHalfTicket" [(ngModel)]="attraction.halfTicketPrice" 
+              required>
+            <mat-icon matSuffix><i class="fas fa-users fa-xs"></i> </mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="standard-input-space" >
+            <mat-select placeholder="Wybierz okres otwarcia" name="attractionPeriod" [(ngModel)]="attraction.seasonOpen">
+                <mat-option *ngFor="let period of attractionPeriods" [value]="period">
+                  {{period}}
+                </mat-option>
+              </mat-select>
+            <mat-icon matSuffix><i class="fas fa-list-ul fa-xs"></i> </mat-icon>
+          </mat-form-field>
+
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Zdjęcie</ng-template>
+        <mat-label>Wybierz głowne zdjęcie atrakcji</mat-label>
+        <image-upload [url]="'https://localhost:5001/api/photo/addCityPhoto'"
+                      [buttonCaption]="'Wybierz zdjęcie'"
+                      [dropBoxMessage]="'Lub przeciągnij je tutaj'"
+                      [clearButtonCaption]="'Wyczyść'"
+                      [style]="customStyle"
+                      [max]="10"
+                      > 
+        </image-upload>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Gotowe</ng-template>
+        Czy chcesz zatwierdzić zmiany?
+        <div>
+          <button mat-button (click)="submit()">Tak</button>
+          <button mat-button (click)="stepper.reset()">Zresetuj</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </form>
+
+</body>

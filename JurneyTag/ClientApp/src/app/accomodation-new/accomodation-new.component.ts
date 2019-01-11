@@ -6,8 +6,8 @@ import { AccomodationAlimentationComponent } from './../accomodation-alimentatio
 import { AccomodationRoomComponent } from './../accomodation-room/accomodation-room.component';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog, MatTableDataSource, MatDialogClose } from '@angular/material';
-import { type } from 'os';
+import { MatDialog, MatTableDataSource, MatDialogClose, MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 declare let L;
 declare let tomtom: any;
 
@@ -21,6 +21,8 @@ export class AccomodationNewComponent implements OnInit {
   constructor(private httpClient : HttpClient, private dialog:MatDialog,
               private accomodationService : AccomodationService,
               private alDialog : MatDialog, 
+              private router : Router,
+              private matSnackBar: MatSnackBar,
               private changeDetectorRefs: ChangeDetectorRef) { }
   accomodationTypes : string[] = [ "Hotel", "Hostel", "Nocleg", "Domek"]
   accomodationStandards : string[] = [ "Niski", "Średni", "Wysoki", "Bardzo wysoki"]
@@ -59,6 +61,7 @@ export class AccomodationNewComponent implements OnInit {
     },
     rooms : [] = [],
     alimentations : [] = [],
+    mainImage: undefined
   }
  
   ngOnInit() {
@@ -162,7 +165,7 @@ submit(){
        number : room.number,
        standard: room.standard,
        type : room.type,
-       price : room.proce
+       price : room.price
      });
   });
   this.aliementations.forEach(alm => {
@@ -174,9 +177,13 @@ submit(){
   });
 
   this.accomodationService.addAccomodation(this.accomodation).subscribe(response => {
-
+    this.matSnackBar.open("Dodano nowe zakwaterowanie do katalogu", "Zamknij", {
+      duration: 2000,
+    });
+    console.log(response);
+    this.router.navigate(['/listAccd']);
   });
-  
-  console.log(this.accomodation)
+
+ 
 }
 }

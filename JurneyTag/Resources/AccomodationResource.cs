@@ -10,9 +10,13 @@ namespace JurneyTag.Resources
         public int Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
-        public int Stars { get; set; }
+        public string Standard { get; set; }
         public string Description { get; set; }
-        public string Alimentation { get; set; }
+        public Address Address { get; set; }
+
+        public IEnumerable<AlimentationResource> Alimentations { get; set; }
+        public IEnumerable<RoomResource> Rooms { get; set; }
+
         public Location Location { get; set; }
     }
 }

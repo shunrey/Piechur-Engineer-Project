@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule, MatMenuModule, MatButtonModule, MatExpansionModule, MatIconModule, MatInputModule, MatStepperModule, MatRadioModule, MatDividerModule, MatGridListModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTableModule} from '@angular/material';
+import {MatToolbarModule, MatMenuModule, MatButtonModule, MatExpansionModule, MatIconModule, MatInputModule, MatStepperModule, MatRadioModule, MatDividerModule, MatGridListModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTableModule, MatListModule} from '@angular/material';
 import { CityListComponent } from './city-list/city-list.component';
 import { CityNewComponent } from './city-new/city-new.component';
 import { FormsModule } from '@angular/forms';
@@ -22,6 +22,11 @@ import { MainComponent } from './main/main.component';
 import { AccomodationNewComponent } from './accomodation-new/accomodation-new.component';
 import { AccomodationRoomComponent } from './accomodation-room/accomodation-room.component';
 import { AccomodationAlimentationComponent } from './accomodation-alimentation/accomodation-alimentation.component';
+import { AccomodationListComponent } from './accomodation-list/accomodation-list.component';
+import { AccomodationDetailComponent } from './accomodation-detail/accomodation-detail.component';
+import { AttractionListComponent } from './attraction-list/attraction-list.component';
+import { AttractionNewComponent } from './attraction-new/attraction-new.component';
+import { AttractionDetailComponent } from './attraction-detail/attraction-detail.component';
 
 
 
@@ -35,7 +40,12 @@ import { AccomodationAlimentationComponent } from './accomodation-alimentation/a
     MainComponent,
     AccomodationNewComponent,
     AccomodationRoomComponent,
-    AccomodationAlimentationComponent
+    AccomodationAlimentationComponent,
+    AccomodationListComponent,
+    AccomodationDetailComponent,
+    AttractionListComponent,
+    AttractionNewComponent,
+    AttractionDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -64,15 +74,19 @@ import { AccomodationAlimentationComponent } from './accomodation-alimentation/a
     MatFileUploadModule,
     MatCardModule,
     MatDialogModule,
+    MatListModule,
     RouterModule.forRoot([
       {path: '', component:MainComponent},
       {path: 'addCity', component: CityNewComponent},
       {path: 'listCity', component: CityListComponent},
-      {path: 'addAccomodation', component: AccomodationNewComponent}
+      {path: 'listAccd', component: AccomodationListComponent},
+      {path: 'addAccomodation', component: AccomodationNewComponent},
+      {path: 'addAttraction', component: AttractionNewComponent}
     ]),
   ],
   providers: [],
-  entryComponents: [CityDetailComponent, AccomodationRoomComponent, AccomodationAlimentationComponent],
+  entryComponents: [CityDetailComponent, AccomodationRoomComponent, AccomodationAlimentationComponent,
+                    AccomodationDetailComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

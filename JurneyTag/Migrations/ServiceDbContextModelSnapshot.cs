@@ -24,7 +24,11 @@ namespace JurneyTag.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Alimentation");
+                    b.Property<string>("AddressBuild");
+
+                    b.Property<string>("AddressCity");
+
+                    b.Property<string>("AddressStreet");
 
                     b.Property<string>("Description");
 
@@ -34,13 +38,34 @@ namespace JurneyTag.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("Stars");
+                    b.Property<string>("Standard");
 
                     b.Property<string>("Type");
 
                     b.HasKey("Id");
 
                     b.ToTable("Accomodations");
+                });
+
+            modelBuilder.Entity("JurneyTag.Core.Models.Alimentation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccomodationId");
+
+                    b.Property<double>("AdditionalPrice");
+
+                    b.Property<string>("IsInOffert");
+
+                    b.Property<string>("Type");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccomodationId");
+
+                    b.ToTable("Alimentations");
                 });
 
             modelBuilder.Entity("JurneyTag.Core.Models.Attraction", b =>
@@ -62,6 +87,29 @@ namespace JurneyTag.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Attractions");
+                });
+
+            modelBuilder.Entity("JurneyTag.Core.Models.Room", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AccomodationId");
+
+                    b.Property<int>("Number");
+
+                    b.Property<double>("Price");
+
+                    b.Property<string>("Standard");
+
+                    b.Property<string>("Type");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccomodationId");
+
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("JurneyTag.Models.City", b =>
@@ -89,6 +137,22 @@ namespace JurneyTag.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cities");
+                });
+
+            modelBuilder.Entity("JurneyTag.Core.Models.Alimentation", b =>
+                {
+                    b.HasOne("JurneyTag.Core.Models.Accomodation", "Accomodation")
+                        .WithMany("Alimentations")
+                        .HasForeignKey("AccomodationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("JurneyTag.Core.Models.Room", b =>
+                {
+                    b.HasOne("JurneyTag.Core.Models.Accomodation", "Accomodation")
+                        .WithMany("Rooms")
+                        .HasForeignKey("AccomodationId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

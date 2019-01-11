@@ -19,5 +19,7 @@ namespace JurneyTag.Peristence
         public DbSet<City> Cities { get; set; }
         public DbSet<Accomodation> Accomodations { get; set; }
         public DbSet<Attraction> Attractions { get; set; }
+        public DbSet<Alimentation> Alimentations { get; set; }
+        public DbSet<Room> Rooms { get; set; }
     }
 }

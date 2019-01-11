@@ -1,0 +1,45 @@
+<mat-dialog-content style="font-family: Arial, Helvetica, sans-serif">
+  <h1 mat-dialog-title>{{accomodation.name}}</h1>
+
+ <div style="margin-bottom:3%">
+      <img [src]="mainImage" style="width:550px;height:350px;  margin-left: 10%">
+      <br>
+      <br>
+      <span style="margin-right: 13%"></span>
+      <b>Standard: </b> {{accomodation.standard}} <span style="margin-right: 3%"></span>
+      <b>Typ: </b> {{accomodation.type}}  <span style="margin-right: 3%"></span>
+      <b>Adres: </b> {{accomodation.address.city}} {{accomodation.address.street}} {{accomodation.address.build}} 
+</div>
+<div style="clear:both;">
+  <br>
+  <h1 style="text-align: center" mat-dialog-title>Opis</h1>
+    <pre>
+        <p [innerHTML]="accomodation.description" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px;"> </p>
+    </pre>   
+  <div style="width:600px; height: 400px; margin-left: 30px;" id="map"> </div>
+</div>
+<br>
+<br>
+
+<mat-list style="margin-top:-5%">
+    <h1 mat-dialog-title>Pokoje</h1>
+    <mat-list-item *ngFor="let room of accomodation.rooms">
+      <mat-icon mat-list-icon><i class="fas fa-bed"></i></mat-icon>
+      <p mat-line><b>Typ: </b>{{room.type}}</p>
+      <p mat-line><b>Ilość: </b>{{room.number}}</p>
+      <p mat-line><b>Standard: </b>{{room.standard}}</p>
+    </mat-list-item>   
+</mat-list>
+
+
+<mat-list style="float: right; margin-top:-37%" >
+<h1 mat-dialog-title>Wyżywienie</h1>
+<mat-list-item *ngFor="let alimentation of accomodation.alimentations">
+    <mat-icon mat-list-icon><i class="fas fa-utensils"></i></mat-icon>
+    <p mat-line><b>Typ: </b>{{alimentation.type}}</p>
+    <p mat-line><b>W ofercie: </b>{{alimentation.isInOffert}}</p>
+    <p mat-line><b>Dodatkowa cena: </b>{{alimentation.addPrice}} zł</p>
+  </mat-list-item>
+</mat-list>
+
+</mat-dialog-content>

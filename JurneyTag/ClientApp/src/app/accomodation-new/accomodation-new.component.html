@@ -193,8 +193,8 @@
       </mat-step>
       <mat-step>
         <ng-template matStepLabel>Zdjęcie</ng-template>
-        <mat-label>Wybierz głowne zdjęcie przedstawiające miejscowość z jak najlepszej strony!</mat-label>
-        <image-upload [url]="'https://localhost:5001/api/photo/add'"
+        <mat-label>Wybierz głowne zdjęcie zakwaterowania</mat-label>
+        <image-upload [url]="'https://localhost:5001/api/photo/addAccomodationPhoto'"
                       [buttonCaption]="'Wybierz zdjęcie'"
                       [dropBoxMessage]="'Lub przeciągnij je tutaj'"
                       [clearButtonCaption]="'Wyczyść'"
@@ -202,16 +202,6 @@
                       [max]="10"
                       > 
         </image-upload>
-        <br>
-      <mat-label>Wybierz zdjęcie herbu miejscowości</mat-label>
-      <image-upload [url]="'https://localhost:5001/api/photo/add'"
-                      [buttonCaption]="'Wybierz zdjęcie'"
-                      [dropBoxMessage]="'Lub przeciągnij je tutaj'"
-                      [clearButtonCaption]="'Wyczyść'"
-                      [style]="customStyle"
-                      [max]="10"
-                       > 
-      </image-upload>
       </mat-step>
 
       <mat-step>

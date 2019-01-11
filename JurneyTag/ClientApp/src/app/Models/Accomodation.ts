@@ -13,4 +13,5 @@ export interface Accomodation {
     standard : string;
     alimentations : Alimentation[];
     rooms : Room[];
+    mainImage : any;
 }

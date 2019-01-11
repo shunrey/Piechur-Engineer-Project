@@ -12,7 +12,7 @@ export class CityService {
   private urlCityAdd : string = "https://localhost:5001/api/city/add";
   private urlCityRemove : string = "https://localhost:5001/api/city/delete"
   private urlCityGetAll : string = "https://localhost:5001/api/city/getAll";
-  private urlGetMainPhoto : string = "https://localhost:5001/api/photo/get"
+  private urlGetMainPhoto : string = "https://localhost:5001/api/photo/getCityPhoto"
 
   constructor(private httpClient: HttpClient) {}
 

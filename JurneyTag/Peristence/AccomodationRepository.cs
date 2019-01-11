@@ -37,7 +37,9 @@ namespace JurneyTag.Peristence
 
         public async Task<IEnumerable<Accomodation>> GetAccomodations()
         {
-            throw new NotImplementedException();
+            return await _serviceDbContext.Accomodations.Include(a => a.Alimentations)
+                                                        .Include(r => r.Rooms)
+                                                        .ToListAsync();
         }
 
         public void RemoveAccomodation(int id)

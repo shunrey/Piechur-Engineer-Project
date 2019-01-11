@@ -7,8 +7,9 @@ import { Injectable } from '@angular/core';
 })
 export class AccomodationService {
 
-  private urlAccomodationAdd : string = '';
-  private urlAccomodationGetAll : string = '';
+  private urlAccomodationAdd : string = "https://localhost:5001/api/accomodation/add";
+  private urlAccomodationGetAll : string = 'https://localhost:5001/api/accomodation/getAll';
+  private urlGetMainPhoto : string = "https://localhost:5001/api/photo/getAccdPhoto"
 
   constructor(private httpClient : HttpClient) { }
 
@@ -19,5 +20,11 @@ export class AccomodationService {
   getAllAccomodations(){
     return this.httpClient.get(this.urlAccomodationGetAll);
   }
-  
+
+  getMainPhoto(accId:number){
+    return this.httpClient.get(this.urlGetMainPhoto + '?id=' + accId +'&sufix=AccdMain',{
+      responseType: 'blob'
+    });
+ }
+
 }
