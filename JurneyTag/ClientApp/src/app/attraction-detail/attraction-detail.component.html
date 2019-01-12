@@ -1,3 +1,28 @@
-<p>
-  attraction-detail works!
-</p>
+<mat-dialog-content style="font-family: Arial, Helvetica, sans-serif">
+    <h1 mat-dialog-title>{{attraction.name}}</h1>
+  
+   <div style="margin-bottom:3%">
+        <img [src]="mainImage" style="width:550px;height:350px;  margin-left: 10%">
+        <br>
+        <br>
+        <span style="margin-right: 13%"></span>
+        <b>Cena biletu: </b> {{attraction.ticketPrice}} zł/os <span style="margin-right: 6%"></span>
+        <b>Czynne: </b> {{attraction.seasonOpen}}  
+        <br>
+        <b>Cena biletu ulgowego: </b> {{attraction.halfTicketPrice}} zł/os  <span style="margin-right: 6%"></span>
+        <b>Adres: </b> {{attraction.address.city}} {{attraction.address.street}} {{attraction.address.build}} 
+        <br>
+       
+  </div>
+  <div style="clear:both;">
+    <br>
+    <h1 style="text-align: center" mat-dialog-title>Opis</h1>
+      <pre>
+          <p [innerHTML]="attraction.description" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px;"> </p>
+      </pre>   
+    <div style="width:600px; height: 400px; margin-left: 30px;" id="map"> </div>
+  </div>
+  <br>
+  <br>
+  </mat-dialog-content>
+  

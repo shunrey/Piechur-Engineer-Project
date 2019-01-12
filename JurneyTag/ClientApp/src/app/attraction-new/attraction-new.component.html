@@ -84,7 +84,7 @@
       <mat-step [stepControl]="f1" (click)="log()">
         <ng-template matStepLabel>Dodatkowe infromacje</ng-template>
 
-          <mat-label>Koordynaty (ustawianie: {{attraction.city}} {{attraction.street}} {{attraction.build}} )</mat-label>
+          <mat-label>Koordynaty (ustawianie: {{attraction.address.city}} {{attraction.address.street}} {{attraction.address.build}} )</mat-label>
           <br>
           <mat-label style="font-size: 70%">Jeśli błędne lub nie znaleziono, wprowadź nowe wartośći: </mat-label>
           <br>
@@ -137,7 +137,7 @@
       <mat-step>
         <ng-template matStepLabel>Zdjęcie</ng-template>
         <mat-label>Wybierz głowne zdjęcie atrakcji</mat-label>
-        <image-upload [url]="'https://localhost:5001/api/photo/addCityPhoto'"
+        <image-upload [url]="'https://localhost:5001/api/photo/addAttractionPhoto'"
                       [buttonCaption]="'Wybierz zdjęcie'"
                       [dropBoxMessage]="'Lub przeciągnij je tutaj'"
                       [clearButtonCaption]="'Wyczyść'"

@@ -41,7 +41,9 @@ export class AttractionNewComponent implements OnInit {
       build: '',
     },
     ticketPrice : undefined,
-    halfTicketPrice : undefined
+    halfTicketPrice : undefined,
+    mainImage: undefined,
+    id : undefined,
   };
 
   ngOnInit() {
@@ -52,14 +54,14 @@ export class AttractionNewComponent implements OnInit {
       key: '8oXUWjwdr1KtlIlQyrBsTXyAd1wqfDcI',
       basePath: '/assets/sdk',
       center: [ this.latitude, this.longitude ],
-      zoom: 10,
+      zoom: 16,
       source : 'vector'
     });
     this.marker = tomtom.L.marker([this.latitude, this.longitude]).addTo(this.map);
   }
   
   reloadMap(){
-    this.map.setView([this.latitude, this.longitude],10);
+    this.map.setView([this.latitude, this.longitude],16);
     this.map.removeLayer(this.marker);
     this.marker = tomtom.L.marker([this.latitude, this.longitude]).addTo(this.map);
   }
@@ -73,10 +75,10 @@ export class AttractionNewComponent implements OnInit {
     this.attraction.location.mapPositionLatitude = this.latitude;
     this.attraction.location.mapPositionLongitude = this.longitude;
     this.attractionService.addAttraction(this.attraction).subscribe(resp => {
-      this.snackBar.open("Dodano nową miejscowość do katalogu", "Zamknij", {
+      this.snackBar.open("Dodano nową atrakcję do katalogu", "Zamknij", {
         duration: 2000,
       });
-      this.router.navigate(['/listCity']);
+      this.router.navigate(['/listAttr']);
     })
   }
   

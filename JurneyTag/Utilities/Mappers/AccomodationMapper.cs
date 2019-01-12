@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace JurneyTag.Utilities.Mappers
 {
-    public class AccomodationMapper
+    public static class AccomodationMapper
     {
         public static Accomodation MapAccomodationResourceToAccomodation(AccomodationResource accomodationResource)
         {

@@ -10,19 +10,27 @@ namespace JurneyTag.Peristence
 {
     public class AttractionRepository : IAttractionRepository
     {
+
+        private readonly ServiceDbContext _serviceDbContext;
+
+        public AttractionRepository(ServiceDbContext serviceDbContext)
+        {
+            _serviceDbContext = serviceDbContext;
+        }
+
         public void AddAttraction(Attraction attraction)
         {
-            throw new NotImplementedException();
+            _serviceDbContext.Attractions.Add(attraction);
         }
 
-        public Task<Attraction> GetAttraction(int id)
+        public async Task<Attraction> GetAttraction(int id)
         {
-            throw new NotImplementedException();
+           return await _serviceDbContext.Attractions.SingleOrDefaultAsync(a => a.Id == id);
         }
 
-        public Task<IEnumerable<Attraction>> GetAttractions()
+        public async Task<IEnumerable<Attraction>> GetAttractions()
         {
-            throw new NotImplementedException();
+            return await _serviceDbContext.Attractions.ToListAsync();
         }
 
         public Task<IEnumerable<Attraction>> GetAttractionsByUser(string userId)

@@ -10,7 +10,10 @@ namespace JurneyTag.Resources
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public double Price { get; set; }
+        public double TicketPrice { get; set; }
+        public double HalfTicketPrice { get; set; }
+        public Address Address { get; set; }
+        public string SeasonOpen { get; set; }
         public Location Location { get; set; }
     }
 }

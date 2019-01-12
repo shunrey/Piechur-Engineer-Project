@@ -80,13 +80,14 @@ import { AttractionDetailComponent } from './attraction-detail/attraction-detail
       {path: 'addCity', component: CityNewComponent},
       {path: 'listCity', component: CityListComponent},
       {path: 'listAccd', component: AccomodationListComponent},
+      {path: 'listAttr', component: AttractionListComponent},
       {path: 'addAccomodation', component: AccomodationNewComponent},
       {path: 'addAttraction', component: AttractionNewComponent}
     ]),
   ],
   providers: [],
   entryComponents: [CityDetailComponent, AccomodationRoomComponent, AccomodationAlimentationComponent,
-                    AccomodationDetailComponent],
+                    AccomodationDetailComponent, AttractionDetailComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
