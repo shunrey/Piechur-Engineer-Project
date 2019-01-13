@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule, MatMenuModule, MatButtonModule, MatExpansionModule, MatIconModule, MatInputModule, MatStepperModule, MatRadioModule, MatDividerModule, MatGridListModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTableModule, MatListModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, NativeDateModule, MatYearView} from '@angular/material';
+import {MatToolbarModule, MatMenuModule, MatButtonModule, MatExpansionModule, MatIconModule, MatInputModule, MatStepperModule, MatRadioModule, MatDividerModule, MatGridListModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTableModule, MatListModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, NativeDateModule, MatYearView, MatTabsModule} from '@angular/material';
 import { CityListComponent } from './city-list/city-list.component';
 import { CityNewComponent } from './city-new/city-new.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,7 +29,7 @@ import { AttractionNewComponent } from './attraction-new/attraction-new.componen
 import { AttractionDetailComponent } from './attraction-detail/attraction-detail.component';
 import { OffertNewComponent } from './offert-new/offert-new.component';
 import { OffertAttractionDetailComponent } from './offert-attraction-detail/offert-attraction-detail.component';
-
+import { OffertDetailComponent } from './offert-detail/offert-detail.component';
 
 
 @NgModule({
@@ -49,7 +49,8 @@ import { OffertAttractionDetailComponent } from './offert-attraction-detail/offe
     AttractionNewComponent,
     AttractionDetailComponent,
     OffertNewComponent,
-    OffertAttractionDetailComponent
+    OffertAttractionDetailComponent,
+    OffertDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -82,6 +83,7 @@ import { OffertAttractionDetailComponent } from './offert-attraction-detail/offe
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
+    MatTabsModule,
     NativeDateModule,
     MatListModule,
     MatNativeDateModule,
@@ -93,7 +95,8 @@ import { OffertAttractionDetailComponent } from './offert-attraction-detail/offe
       {path: 'listAttr', component: AttractionListComponent},
       {path: 'addAccomodation', component: AccomodationNewComponent},
       {path: 'addAttraction', component: AttractionNewComponent},
-      {path: 'addOffert', component: OffertNewComponent}
+      {path: 'addOffert', component: OffertNewComponent},
+      {path: 'offertDetail', component: OffertDetailComponent}
     ]),
   ],
   providers: [

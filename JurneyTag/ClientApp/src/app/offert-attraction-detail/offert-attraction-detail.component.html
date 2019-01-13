@@ -3,13 +3,15 @@
   
    <div style="margin-bottom:15%">
         <img [src]="mainImage" style="width:300px;height:200px; float: left; margin-right: 5%">
-        <br>
-        <p><b>Data: </b> {{attraction._dynamicDateAttraction}} <p> 
+       
+        <p><b>Data: </b> {{attraction._dynamicDateAttraction |  date: 'dd.MM.yyyy'}} <p> 
         <p><b>Cena biletu:</b> {{attraction.ticketPrice}} <p>   
         <p><b>Cena biletu ulgowego:</b> {{attraction.halfTicketPrice}} zł <p> 
         <p><b>Otwarcie:</b> {{attraction.seasonOpen}} zł <p>
         <p><b>Adres:</b> {{attraction.address.city}} {{attraction.address.street}} {{attraction.address.build}} <p>
   </div>
+
+ 
    
   </mat-dialog-content>
   

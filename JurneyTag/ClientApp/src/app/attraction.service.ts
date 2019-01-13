@@ -9,6 +9,7 @@ export class AttractionService {
   
   private urlAttractionAdd : string = "https://localhost:5001/api/attraction/add";
   private urlAttractionGetAll : string = "https://localhost:5001/api/attraction/getAll";
+  private urlAttractionGet : string = "https://localhost:5001/api/attraction/getAttraction";
   private urlGetMainPhoto : string = "https://localhost:5001/api/photo/getAttractionPhoto";
 
   constructor(private httpClient : HttpClient) { }
@@ -19,6 +20,10 @@ export class AttractionService {
 
   getAllAttractions(){
     return this.httpClient.get(this.urlAttractionGetAll);
+  }
+
+  getAttraction(id : number){
+    return this.httpClient.get(this.urlAttractionGet + '/' + id);
   }
 
   getMainPhoto(attrId:number){

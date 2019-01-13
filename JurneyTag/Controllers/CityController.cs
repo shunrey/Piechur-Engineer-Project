@@ -52,5 +52,15 @@ namespace JurneyTag.Controllers
             return Ok();
         }
 
+        [HttpGet("getCity/{id}")]
+        public async Task<IActionResult> GetCity(int id)
+        {
+            var city = await _cityRepository.GetCity(id);
+            var cityResource = CityMapper.MapCityToCityResource(city);
+
+            return Ok(cityResource);
+        }
+
+
     }
 }

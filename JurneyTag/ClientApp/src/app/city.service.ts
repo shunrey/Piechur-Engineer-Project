@@ -12,6 +12,7 @@ export class CityService {
   private urlCityAdd : string = "https://localhost:5001/api/city/add";
   private urlCityRemove : string = "https://localhost:5001/api/city/delete"
   private urlCityGetAll : string = "https://localhost:5001/api/city/getAll";
+  private urlCityGet : string = "https://localhost:5001/api/city/getCity";
   private urlGetMainPhoto : string = "https://localhost:5001/api/photo/getCityPhoto"
 
   constructor(private httpClient: HttpClient) {}
@@ -20,6 +21,10 @@ export class CityService {
       console.log(JSON.stringify(city));
      return this.httpClient.post(this.urlCityAdd, city);
                      
+  }
+
+  getCity(id : number){
+    return this.httpClient.get(this.urlCityGet + '/' + id);
   }
 
   getAllCities(){

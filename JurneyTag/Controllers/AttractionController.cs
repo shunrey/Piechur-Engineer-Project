@@ -43,5 +43,14 @@ namespace JurneyTag.Controllers
 
             return Ok(attractionResources);
         }
+
+        [HttpGet("getAttraction/{id}")]
+        public async Task<IActionResult> GetAttraction(int id)
+        {
+            var attraction = await _attractionRepository.GetAttraction(id);
+            var attractionResource = AttractionMapper.MapAttractionToAttractionResource(attraction);
+
+            return Ok(attractionResource);
+        }
     }
 }

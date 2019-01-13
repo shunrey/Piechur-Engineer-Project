@@ -9,6 +9,7 @@ export class AccomodationService {
 
   private urlAccomodationAdd : string = "https://localhost:5001/api/accomodation/add";
   private urlAccomodationGetAll : string = 'https://localhost:5001/api/accomodation/getAll';
+  private urlAccomodationGet : string = 'https://localhost:5001/api/accomodation/getAccomodation';
   private urlGetMainPhoto : string = "https://localhost:5001/api/photo/getAccdPhoto"
 
   constructor(private httpClient : HttpClient) { }
@@ -19,6 +20,10 @@ export class AccomodationService {
 
   getAllAccomodations(){
     return this.httpClient.get(this.urlAccomodationGetAll);
+  }
+
+  getAccomodation(id : number){
+    return this.httpClient.get(this.urlAccomodationGet + '/' + id);
   }
 
   getMainPhoto(accId:number){

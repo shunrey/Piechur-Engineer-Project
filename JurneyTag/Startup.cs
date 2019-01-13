@@ -33,6 +33,7 @@ namespace JurneyTag
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IAccomodationRepository, AccomodationRepository>();
             services.AddScoped<IAttractionRepository, AttractionRepository>();
+            services.AddScoped<IOffertRespository, OffertRepository>();
 
             services.AddCors(options => options.AddPolicy("AllowAll", builder =>
             {

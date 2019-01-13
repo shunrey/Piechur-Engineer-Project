@@ -44,5 +44,15 @@ namespace JurneyTag.Controllers
 
             return Ok(accomodationsResources);
         }
+
+        [HttpGet("getAccomodation/{id}")]
+        public async Task<IActionResult> GetAccomodation(int id)
+        {
+            var accd = await _accomodationRepository.GetAccomodation(id);
+            var accdResource = AccomodationMapper.MapAccomodationToAccomodationResource(accd);
+
+            return Ok(accdResource);
+        }
+
     }
 }

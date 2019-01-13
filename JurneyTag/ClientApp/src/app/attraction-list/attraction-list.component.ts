@@ -77,7 +77,8 @@ addAccdToList(attrResult) {
       seasonOpen : attrResult.seasonOpen,
       ticketPrice : attrResult.ticketPrice,
       halfTicketPrice : attrResult.halfTicketPrice,
-      mainImage: undefined
+      mainImage: undefined,
+      _dynamicDateAttraction: undefined
 });
 // console.log(this.imageToShow);
 console.log(this.attractionsList);

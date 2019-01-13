@@ -27,7 +27,9 @@ namespace JurneyTag.Peristence
 
         public async Task<Accomodation> GetAccomodation(int id)
         {
-            return await _serviceDbContext.Accomodations.SingleOrDefaultAsync(a => a.Id == id);
+            return await _serviceDbContext.Accomodations.Include(a => a.Alimentations)
+                                                        .Include(r => r.Rooms)
+                                                        .SingleOrDefaultAsync(a => a.Id == id);
         }
 
         public async Task<IEnumerable<Accomodation>> GetAccomodationsByUser(string userId)

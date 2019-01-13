@@ -18,5 +18,7 @@ namespace JurneyTag.Core.Models
         public string AddressStreet { get; set; }
         public string AddressBuild { get; set; }
         public string SeasonTime { get; set; }
+
+        public IEnumerable<OffertAttraction> OffertAttractions { get; set; }
     }
 }
