@@ -1,0 +1,217 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+  crossorigin="anonymous">
+
+<body style="margin-left: 25%">
+  <h2 style="color: darkslategrey">
+    Stwórz ofertę
+  </h2>
+  <mat-divider style="margin-bottom:-12px"></mat-divider>
+  <form #f1="ngForm">
+    <mat-vertical-stepper #stepper >
+      <ng-template matStepperIcon="edit">
+        <i class="fa fa-check"></i>
+      </ng-template>
+      <mat-step [stepControl]="f1">
+        <ng-template matStepLabel>Głowne informacje</ng-template>
+        
+          <mat-form-field appearance="outline" class="standard-input-space">
+            <mat-label>Podaj nazwę oferty</mat-label>
+            <input matInput placeholder="Nazwa oferty" 
+              required>
+            <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Podaj liczbę miejsc</mat-label>
+            <input matInput type="number" placeholder="Liczba miejsc" 
+              required>
+            <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+          </mat-form-field>
+          <br>
+          <mat-form-field appearance="outline" class="standard-input-space">
+            <input matInput [matDatepicker]="picker" placeholder="Data rozpoczęcia">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <input matInput [matDatepicker]="picker2" placeholder="Data zakończenia">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+      
+          <quill-editor [style]="{height: '350px'}" [placeholder]="'Tutaj wstaw ciekawy opis oferty...'">
+            <div quill-editor-toolbar>
+              <span class="ql-formats">
+                <select class="ql-header" [title]="'Styl'">
+                  <option selected>Normalna</option>
+                  <option value="3">Nagłówek 3</option>
+                  <option value="2">Nagłówek 2</option>
+                  <option value="1">Nagłówek 1</option>
+                </select>
+              </span>
+              <span class="ql-formats">
+                <button class="ql-bold" [title]="'Pogrubiona'"></button>
+                <button class="ql-italic" [title]="'Kursywa'"></button>
+                <button class="ql-underline" [title]="'Podkreślenie'"></button>
+                <button class="ql-list" value="ordered" [title]="'Lista posortowana'"></button>
+                <button class="ql-list" value="bullet" [title]="'Lista punktowa'"></button>
+              </span>
+              <span class="ql-formats">
+                <select class="ql-align" [title]="'Wyrównanie'">
+                  <option selected></option>
+                  <option value="center"></option>
+                  <option value="right"></option>
+                  <option value="justify"></option>
+                </select>
+              </span>
+            </div>
+          </quill-editor>
+       
+      </mat-step>
+
+      <mat-step [stepControl]="f1">
+      <ng-template matStepLabel>Miejscowość</ng-template>
+      <mat-form-field appearance="outline" style="float:left;">
+          <mat-select placeholder="Wybierz miejscowość" (selectionChange)="pickCityPhoto()"
+                                                          name="city" [(value)]="selectedCity" >
+              <mat-option *ngFor="let city of cities"  [value]="city" >
+                {{city.name}}
+              </mat-option>
+            </mat-select>
+          <mat-icon matSuffix><i class="fas fa-list-ul fa-xs"></i> </mat-icon>
+        </mat-form-field>
+        <mat-card class="mat-elevation-z3">
+          <div *ngIf="selectedCity.id != undefined">
+              <mat-card-title style="text-align: center">{{selectedCity.name}} </mat-card-title>
+              <img style="width: 300px; height: 200px; margin-left: 3%" [src]="selectedCity.mainImage">
+          </div>   
+          <div class="blank-card" *ngIf="selectedCity.id == undefined">
+               Wybierz miejscowość
+          </div>
+        </mat-card>
+        <br>
+        <span style="float: left; margin-top: -260px">
+            <p><b>Liczba mieszkańców: </b> {{selectedCity.population}}</p>
+            <p><b>Obszar: </b> {{selectedCity.area}} <span *ngIf="selectedCity.id != undefined"> km <sup>2</sup> </span> </p>
+            <p><b>Gęstość zaludnienia: </b> {{selectedCity.populationDensity}} <span *ngIf="selectedCity.id != undefined"> os/km <sup>2</sup> </span> </p>
+            <p><b>Długość geograficzna: </b> {{selectedCity.location.mapPositionLatitude}} <span *ngIf="selectedCity.id != undefined"> &deg; E</span> </p>
+            <p><b>Szerokość geograficzna: </b> {{selectedCity.location.mapPositionLongitude}} <span *ngIf="selectedCity.id != undefined"> &deg; W </span></p>
+        </span>
+       
+  
+      </mat-step>
+      <mat-step [stepControl]="f1">
+          <ng-template matStepLabel>Zakwaterowanie</ng-template>
+
+          <mat-form-field appearance="outline" style="float:left;">
+              <mat-select placeholder="Wybierz zakwaterowanie" (selectionChange)="pickAccomodationPhoto()"
+                                                               name="accd" [(value)]="selectedAccomodation" >
+                  <mat-option *ngFor="let accd of accomodations" [value]="accd">
+                    {{accd.name}}
+                  </mat-option>
+                </mat-select>
+              <mat-icon matSuffix><i class="fas fa-list-ul fa-xs"></i> </mat-icon>
+            </mat-form-field>
+            <mat-card class="mat-elevation-z3">
+                <div *ngIf="selectedAccomodation.id != undefined">
+                    <mat-card-title style="text-align: center">{{selectedAccomodation.name}} </mat-card-title>
+                    <img style="width: 300px; height: 200px; margin-left: 3%" [src]="selectedAccomodation.mainImage">
+                </div>   
+                <div class="blank-card" *ngIf="selectedAccomodation.id == undefined">
+                     Wybierz zakwaterowanie
+                </div>
+           </mat-card>   
+           <br>
+           <span style="float: left; margin-left: -720px; margin-top: 80px" *ngIf="selectedAccomodation.id == undefined">
+              <p><b>Standard: </b></p>
+              <p><b>Typ: </b> </p>
+              <p><b>Adres: </b></p>
+              <p><b>Pokoje: </b> </p>
+              <p><b>Wyżywienie: </b> </p> 
+           </span>
+
+           <span style="float: left; margin-top: -260px" *ngIf="selectedAccomodation.id != undefined">
+               <p><b>Standard: </b> {{selectedAccomodation.standard}}</p>
+               <p><b>Typ: </b> {{selectedAccomodation.type}} </p>
+               <p><b>Adres: </b> {{selectedAccomodation.address.city}} {{selectedAccomodation.address.street}} {{selectedAccomodation.address.build}} </p>
+               <p><b>Pokoje: </b> 
+                <mat-list>
+                 <mat-list-item *ngFor="let room of selectedAccomodation.rooms"> 
+                    <mat-icon mat-list-icon><i class="fas fa-bed"></i></mat-icon>
+                    &nbsp; {{room.standard}} {{room.type}} {{room.price}} zł/osobę
+                 </mat-list-item>
+                </mat-list>  </p>
+               <p><b>Wyżywienie: </b> 
+                <mat-list>
+                  <mat-list-item *ngFor="let alimentation of selectedAccomodation.alimentations">
+                    <mat-icon mat-list-icon> <i class="fas fa-utensils"></i></mat-icon>
+                    &nbsp; {{alimentation.type}} 
+                    <span *ngIf="alimentation.isInOffert=='Tak'">&nbsp;(w ofercie)</span>
+                    <span *ngIf="alimentation.isInOffert=='Nie'">&nbsp;{{alimentation.addPrice}} zł/osobę</span>
+                  </mat-list-item>
+                </mat-list>
+                
+           </span>   
+      
+      </mat-step>
+      <mat-step [stepControl]="f1">
+          <ng-template matStepLabel>Atrakcje</ng-template>
+
+          <mat-form-field appearance="outline" class="standard-input-space">
+              <mat-select placeholder="Wybierz Atrakcję" name="attr" [(value)]="selectedAttraction" >
+                                                               
+                  <mat-option *ngFor="let attr of attractions" [value]="attr">
+                    {{attr.name}}
+                  </mat-option>
+                </mat-select>
+              <mat-icon matSuffix><i class="fas fa-list-ul fa-xs"></i> </mat-icon>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" >
+              <input matInput [matDatepicker]="picker3" placeholder="Data atrakcji" name="attrDate" [(ngModel)]="selectedAttraction._dynamicDateAttraction">
+              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+              <mat-datepicker #picker3></mat-datepicker>
+            </mat-form-field>
+          <br>
+          <button mat-button (click)="addAttraction()">Dodaj</button>
+           
+          <table mat-table [dataSource]="dataSourceAttractions"  style="width: 600px" class="mat-elevation-z2">
+              <ng-container matColumnDef="Nazwa atrakcji">
+                <th mat-header-cell *matHeaderCellDef> Nazwa atrakcji </th>
+                <td mat-cell *matCellDef="let attraction"> {{attraction.name}} </td>
+              </ng-container>
+          
+                <ng-container matColumnDef="Data atrakcji">
+                    <th mat-header-cell *matHeaderCellDef> Data atrakcji </th>
+                    <td mat-cell *matCellDef="let attraction"> {{attraction._dynamicDateAttraction | date: 'dd.MM.yyyy'}} </td>
+                  </ng-container>
+            
+              <ng-container matColumnDef="Usuń">
+                  <mat-header-cell  *matHeaderCellDef >  </mat-header-cell>
+                  <mat-cell *matCellDef="let attraction" >
+                       <button mat-button (click)="removeAttraction(attraction)" >Usuń</button>
+                  </mat-cell>
+                </ng-container>
+            
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsAttractions"></tr>
+              <tr mat-row  (click)="openDialogAttraction($event,row)" *matRowDef="let row; columns: displayedColumnsAttractions;"></tr>
+          </table>
+          
+      
+      </mat-step>
+      <mat-step [stepControl]="f1">
+          <ng-template matStepLabel>Cena i Typ Oferty</ng-template>
+            
+      
+      </mat-step>
+      <mat-step [stepControl]="f1">
+          <ng-template matStepLabel>Zatwierdzenie</ng-template>
+            
+      
+      </mat-step>
+    </mat-vertical-stepper>
+  </form>
+ 
+
+  
+
+</body>

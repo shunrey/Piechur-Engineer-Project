@@ -10,5 +10,6 @@ export interface Attraction {
     halfTicketPrice : number,
     address : Address,
     location : MapLocation,
+    _dynamicDateAttraction : Date,
     mainImage : any;
 }

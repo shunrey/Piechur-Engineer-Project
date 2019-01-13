@@ -1,0 +1,16 @@
+mat-card {
+    width:350px;
+    height:300px; 
+    float: left; 
+    margin-left: 100px;
+    margin-bottom: 5%;
+    margin-top: 1%;
+
+}
+
+.blank-card {
+    color: gray;
+    text-align: center; 
+    padding-top: 120px;
+}
+

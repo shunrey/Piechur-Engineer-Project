@@ -5,10 +5,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule, MatMenuModule, MatButtonModule, MatExpansionModule, MatIconModule, MatInputModule, MatStepperModule, MatRadioModule, MatDividerModule, MatGridListModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTableModule, MatListModule} from '@angular/material';
+import {MatToolbarModule, MatMenuModule, MatButtonModule, MatExpansionModule, MatIconModule, MatInputModule, MatStepperModule, MatRadioModule, MatDividerModule, MatGridListModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTableModule, MatListModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, NativeDateModule, MatYearView} from '@angular/material';
 import { CityListComponent } from './city-list/city-list.component';
 import { CityNewComponent } from './city-new/city-new.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import {EditorModule} from 'primeng/editor';
 import { QuillModule } from 'ngx-quill';
@@ -27,6 +27,8 @@ import { AccomodationDetailComponent } from './accomodation-detail/accomodation-
 import { AttractionListComponent } from './attraction-list/attraction-list.component';
 import { AttractionNewComponent } from './attraction-new/attraction-new.component';
 import { AttractionDetailComponent } from './attraction-detail/attraction-detail.component';
+import { OffertNewComponent } from './offert-new/offert-new.component';
+import { OffertAttractionDetailComponent } from './offert-attraction-detail/offert-attraction-detail.component';
 
 
 
@@ -45,7 +47,9 @@ import { AttractionDetailComponent } from './attraction-detail/attraction-detail
     AccomodationDetailComponent,
     AttractionListComponent,
     AttractionNewComponent,
-    AttractionDetailComponent
+    AttractionDetailComponent,
+    OffertNewComponent,
+    OffertAttractionDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -75,6 +79,12 @@ import { AttractionDetailComponent } from './attraction-detail/attraction-detail
     MatCardModule,
     MatDialogModule,
     MatListModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    NativeDateModule,
+    MatListModule,
+    MatNativeDateModule,
     RouterModule.forRoot([
       {path: '', component:MainComponent},
       {path: 'addCity', component: CityNewComponent},
@@ -82,12 +92,17 @@ import { AttractionDetailComponent } from './attraction-detail/attraction-detail
       {path: 'listAccd', component: AccomodationListComponent},
       {path: 'listAttr', component: AttractionListComponent},
       {path: 'addAccomodation', component: AccomodationNewComponent},
-      {path: 'addAttraction', component: AttractionNewComponent}
+      {path: 'addAttraction', component: AttractionNewComponent},
+      {path: 'addOffert', component: OffertNewComponent}
     ]),
   ],
-  providers: [],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
+  ],
   entryComponents: [CityDetailComponent, AccomodationRoomComponent, AccomodationAlimentationComponent,
-                    AccomodationDetailComponent, AttractionDetailComponent],
+                    AccomodationDetailComponent, AttractionDetailComponent, OffertAttractionDetailComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

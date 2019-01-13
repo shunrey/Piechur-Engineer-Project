@@ -44,6 +44,7 @@ export class AttractionNewComponent implements OnInit {
     halfTicketPrice : undefined,
     mainImage: undefined,
     id : undefined,
+    _dynamicDateAttraction : undefined
   };
 
   ngOnInit() {

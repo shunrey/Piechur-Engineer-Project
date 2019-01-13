@@ -31,7 +31,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\AccomodationGallery\User1\" />
-    <Folder Include="wwwroot\AttractionGallery\User1\" />
     <Folder Include="wwwroot\CityGallery\" />
   </ItemGroup>
 
