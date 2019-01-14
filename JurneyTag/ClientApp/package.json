@@ -29,6 +29,7 @@
     "angular-froala-wysiwyg": "^2.9.1",
     "angular-material-fileupload": "^1.0.1",
     "angular2-image-upload": "^1.0.0-rc.1",
+    "angular2-moment": "^1.9.0",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "material-time-control": "github:SteveDunlap13/MaterialTimeControl",

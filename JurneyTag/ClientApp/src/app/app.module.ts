@@ -30,6 +30,8 @@ import { AttractionDetailComponent } from './attraction-detail/attraction-detail
 import { OffertNewComponent } from './offert-new/offert-new.component';
 import { OffertAttractionDetailComponent } from './offert-attraction-detail/offert-attraction-detail.component';
 import { OffertDetailComponent } from './offert-detail/offert-detail.component';
+import { MomentModule } from 'angular2-moment';
+import { OffertListComponent } from './offert-list/offert-list.component';
 
 
 @NgModule({
@@ -50,7 +52,8 @@ import { OffertDetailComponent } from './offert-detail/offert-detail.component';
     AttractionDetailComponent,
     OffertNewComponent,
     OffertAttractionDetailComponent,
-    OffertDetailComponent
+    OffertDetailComponent,
+    OffertListComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +83,7 @@ import { OffertDetailComponent } from './offert-detail/offert-detail.component';
     MatCardModule,
     MatDialogModule,
     MatListModule,
+    MomentModule,
     FormsModule,
     ReactiveFormsModule,
     MatDatepickerModule,
@@ -96,7 +100,8 @@ import { OffertDetailComponent } from './offert-detail/offert-detail.component';
       {path: 'addAccomodation', component: AccomodationNewComponent},
       {path: 'addAttraction', component: AttractionNewComponent},
       {path: 'addOffert', component: OffertNewComponent},
-      {path: 'offertDetail', component: OffertDetailComponent}
+      {path: 'offertList/offertDetail/:id', component: OffertDetailComponent},
+      {path: 'offertList', component: OffertListComponent}
     ]),
   ],
   providers: [

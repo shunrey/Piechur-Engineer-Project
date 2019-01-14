@@ -1,0 +1,19 @@
+<body style="margin-left:25%">
+
+  <div *ngFor="let offert of offertsList">
+      <mat-card style="width:25%; float: left; margin-left: 5%" (click)="openDialog(city)">
+          <mat-card-title style="text-align: center">{{offert.name}}</mat-card-title>
+          <img style="height:170px" src="http://www.zywiec.pl/zdjecia/s/dscf8485ok_201803281540.jpg" mat-card-image>
+        <p><b>Typ oferty:</b> {{offert.offertType}}</p>
+        <p><b>Data:</b> {{offert.dateStart}} - {{offert.dateEnd}}</p>
+        <p><b>Cena:</b> od {{offert.minPrice}} zł/os do {{offert.maxPrice}} zł/os </p>
+        <p><b>Miejsca:</b> {{offert.maxPlaces}} / {{offert.maxPlaces}} </p>
+        <mat-card-actions style="text-align: center">
+            <button mat-button [routerLink]="['offertDetail', offert.id]">Informacje</button>
+            <button mat-button>Zapisz się!</button>
+        </mat-card-actions>
+      </mat-card>
+  </div>
+    
+
+</body>

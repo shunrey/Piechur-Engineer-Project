@@ -9,7 +9,7 @@
     <input matInput placeholder="Miejscowość">
   </mat-form-field>
   <span class="fill-space"></span>
-  <button mat-button  [matMenuTriggerFor]="menu">Moi klienci </button>
+  <button mat-button  [matMenuTriggerFor]="menu2">Moje oferty </button>
   <button mat-button [matMenuTriggerFor]="menu">Mój Katalog</button>
   <span class="fill-small-space"></span>
   <button mat-icon-button><i class="fa fa-bell fa-lg"></i></button>
@@ -20,6 +20,11 @@
     <button mat-menu-item routerLink="/listCity" routerLinkActive="active">Moje miejsca</button>
     <button mat-menu-item routerLink="/listAccd" routerLinkActive="active">Moje zakwaterowania</button>
     <button mat-menu-item routerLink="/listAttr" routerLinkActive="active">Moje atrakcje</button>
+  </mat-menu>
+
+  <mat-menu #menu2="matMenu">
+      <button mat-menu-item routerLink="/addOffert" routerLinkActive="active">Stwórz ofertę</button>
+      <button mat-menu-item routerLink="/listAccd" routerLinkActive="active">Moje oferty</button>
   </mat-menu>
 </mat-toolbar>
 

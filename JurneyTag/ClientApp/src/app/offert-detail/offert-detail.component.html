@@ -3,16 +3,25 @@
 
 <body style="margin-left: 25%">
   <h2 style="color: darkslategrey">
-    Nazwa oferty
+    {{offert.name}}
   </h2>
 
-  <mat-tab-group >
-      <mat-tab>
+  <mat-tab-group mat-stretch-tabs (selectedTabChange)="onTabChange($event)">
+     
+      <mat-tab >
         <ng-template mat-tab-label>
           <mat-icon class="example-tab-icon"><i class="fas fa-info-circle"></i></mat-icon>
           Główne informacje
         </ng-template>
-        Content 1
+        <br>
+        <p><b>Czas trwania:</b> {{offert.dateStart | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}} - 
+          {{offert.dateEnd | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}}</p>
+        <p><b>Ilość miejsc:</b> {{offert.maxPlaces}}/{{offert.maxPlaces}} </p>
+        <p><b>Typ oferty:</b> {{offert.offertType}} </p>
+        <p><b>Cena oferty minimalna:</b> {{offert.minPrice}} zł/os</p>
+        <p><b>Cena oferty maksymalna:</b> {{offert.maxPrice}} zł/os </p>
+        <br>
+        <p [innerHTML]="offert.description" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px;"></p>
       </mat-tab>
     
       <mat-tab>
@@ -20,7 +29,21 @@
           <mat-icon class="example-tab-icon"><i class="fas fa-city"></i></mat-icon>
           Miasto
         </ng-template>
-        Content 2
+        <div style="float:left; margin-right:10%">
+            <p style="margin-left: 35%; font-size: 30px"><b>{{city.name}}</b></p>
+            <p><b>Liczba ludności:</b> {{city.population}} </p>
+            <p><b>Powierzchnia:</b> {{city.area}} km<sup>2</sup> </p>
+            <p><b>Gęstość zaludnienia:</b> {{city.populationDensity}} os/km<sup>2</sup></p>
+            <p><b>Wysokość nad poziomem morza:</b> {{city.metersAboveSeaLevel}} m.n.p.m </p>
+        </div>
+        <img [src]="city.mainImage" style="width: 500px; height: 300px; float:left; margin-top: 5%">
+        <br>
+        <p  [innerHTML]="offert.description" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px; clear: both;"></p>
+        
+        <span>
+            <div style="margin-left: 25%; margin-top: 10%" id="map"></div>
+        </span>
+
       </mat-tab>
     
       <mat-tab>
@@ -28,8 +51,52 @@
           <mat-icon class="example-tab-icon"><i class="fas fa-hotel"></i></mat-icon>
           Zakwaterowanie
         </ng-template>
-    
-        Content 3
+        <div style="float:left; margin-right:10%">
+            <p style="margin-left: 35%; font-size: 30px"><b>{{accomodation.name}}</b></p>
+            <p><b>Typ zakwaterowania:</b> {{accomodation.type}} </p>
+            <p><b>Standard:</b> {{accomodation.standard}} </p>
+        </div>
+        <img [src]="accomodation.mainImage" style="width: 500px; height: 300px; float:left; margin-top: 5%; margin-left: 10%; margin-bottom: 5%">
+        <br>
+        <p  [innerHTML]="accomodation.description" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px; clear: both;"></p>
+        <br>
+        <mat-divider></mat-divider>
+        <p style="margin-left: 0%; margin-top: -2%; font-size: 20px; color: gray">Pokoje</p>
+      
+        <table style="width:700px"> 
+           <tr style="height: 50px" *ngFor="let room of accomodation.rooms">
+              <td> <mat-icon mat-list-icon><i class="fas fa-bed"></i></mat-icon>  </td>
+              <td> <b>Standard: </b>{{room.standard}} </td>
+              <td> <b>Typ: </b>{{room.type}} </td>
+              <td> <b>Ilość: </b>{{room.number}} </td>
+              <td> <b>Cena: </b>{{room.price}}  zł/osobę </td>
+           </tr>
+        </table>
+
+        <br>
+        <mat-divider></mat-divider>
+        <p style="margin-left: 0%; margin-top: -2%; font-size: 20px; color: gray">Wyżywienie</p>
+      
+        <table style="width:700px"> 
+           <tr style="height: 50px" *ngFor="let alimentation of accomodation.alimentations">
+              <td> <mat-icon mat-list-icon> <i class="fas fa-utensils"></i></mat-icon>  </td>
+              <td> <b>Typ: </b>{{alimentation.type}} </td>
+              <td> <b>W ofercie: </b>{{alimentation.isInOffert}} </td>
+              <td> <b>Dodatkowa cena: </b>{{alimentation.addPrice}} zł/osobę </td>
+           </tr>
+        </table>
+
+        <br>
+        <mat-divider></mat-divider>
+        <p style="margin-left: 0%; margin-top: -2%; font-size: 20px; color: gray">Adres</p>
+        <div style="float:left">
+            <p><b>Miasto:</b> {{accomodation.address.city}} </p>
+            <p><b>Ulica:</b> {{accomodation.address.street}} </p>
+            <p><b>Budynek:</b> {{accomodation.address.build}} </p>
+        </div>
+        <span>
+            <div style="margin-left: 15%; margin-top: 2%; float:left;" id="map2"></div>
+        </span>
       </mat-tab>
 
       <mat-tab>
@@ -37,7 +104,30 @@
             <mat-icon class="example-tab-icon"><i class="fas fa-map-signs"></i></mat-icon>
             Atrakcje
           </ng-template>
-          Content 2
+          <div *ngFor="let attraction of attractions">
+            <div style="float:left">
+                <p style="margin-left: 35%; font-size: 30px"><b>{{attraction.name}}</b></p>
+                <p><b>Data: </b>{{attraction._dynamicDateAttraction  | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}}</p>
+                <p><b>Cena biletu: </b>{{attraction.ticketPrice}} zł</p>
+                <p><b>Cena biletu ulgowego: </b>{{attraction.halfTicketPrice}} zł</p>
+            </div>
+            <img [src]="attraction.mainImage" style="width: 400px; height: 250px; float:left; margin-top: 5%; margin-left: 20%; margin-bottom: 5%">
+            <p  [innerHTML]="attraction.description" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px; clear: both;"></p>
+            <p><b>Czynne: </b>{{attraction.seasonOpen}}</p>
+            <br>
+            <p style="margin-left: 35%; margin-top: 2%; font-size: 25px; color: gray">Adres</p>
+            <div style="float:left">
+                <p><b>Miasto:</b> {{attraction.address.city}} </p>
+                <p><b>Ulica:</b> {{attraction.address.street}} </p>
+                <p><b>Budynek:</b> {{attraction.address.build}} </p>
+            </div>
+            <span>
+                <div class="map" style="margin-left: 15%; margin-bottom: 5%; margin-top: 2%; float:left; height: 60vh; width: 30vw;" 
+                      id="{{ 'MapA' + attraction.id }}"></div>
+            </span>
+          
+            <mat-divider style="clear:both;"></mat-divider>
+          </div>
         </mat-tab>
 
     </mat-tab-group>
