@@ -100,6 +100,37 @@ namespace JurneyTag.Migrations
                     b.ToTable("Attractions");
                 });
 
+            modelBuilder.Entity("JurneyTag.Core.Models.ClientInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email");
+
+                    b.Property<bool>("IsAccepted");
+
+                    b.Property<bool>("IsRejected");
+
+                    b.Property<bool>("IsRodoChecked");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("OffertId");
+
+                    b.Property<string>("Phone");
+
+                    b.Property<string>("Preferences");
+
+                    b.Property<string>("Surname");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OffertId");
+
+                    b.ToTable("ClientsInfo");
+                });
+
             modelBuilder.Entity("JurneyTag.Core.Models.Offert", b =>
                 {
                     b.Property<int>("Id")
@@ -108,6 +139,8 @@ namespace JurneyTag.Migrations
 
                     b.Property<int>("AccomodationId");
 
+                    b.Property<int>("ActualPlaces");
+
                     b.Property<int>("CityId");
 
                     b.Property<DateTime>("DateEnd");
@@ -115,6 +148,8 @@ namespace JurneyTag.Migrations
                     b.Property<DateTime>("DateStart");
 
                     b.Property<string>("Description");
+
+                    b.Property<bool>("IsPublished");
 
                     b.Property<double>("MaxPrice");
 
@@ -205,6 +240,14 @@ namespace JurneyTag.Migrations
                     b.HasOne("JurneyTag.Core.Models.Accomodation", "Accomodation")
                         .WithMany("Alimentations")
                         .HasForeignKey("AccomodationId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("JurneyTag.Core.Models.ClientInfo", b =>
+                {
+                    b.HasOne("JurneyTag.Core.Models.Offert", "Offert")
+                        .WithMany("ClientsInfo")
+                        .HasForeignKey("OffertId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

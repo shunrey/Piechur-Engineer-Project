@@ -16,8 +16,12 @@ namespace JurneyTag.Resources
         public DateTime DateEnd { get; set; }
         public string OffertType { get; set; }
         public int MaxPlaces { get; set; }
+        public int ActualPlaces { get; set; }
+        public bool IsPublished { get; set; }
+
         public int CityId { get; set; }
         public int AccomodationId { get; set; }
         public IEnumerable<AttractionDateResource> AttractionsDates { get; set; }
+        public IEnumerable<ClientInfoResource> ClientsInfo { get; set; }
     }
 }

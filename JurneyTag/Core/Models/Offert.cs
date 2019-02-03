@@ -15,6 +15,9 @@ namespace JurneyTag.Core.Models
         public double MinPrice { get; set; }
         public string OffertType { get; set; }
         public int Places { get; set; }
+        public int ActualPlaces { get; set; }
+        public bool IsPublished { get; set; }
+
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
 
@@ -25,6 +28,6 @@ namespace JurneyTag.Core.Models
         public Accomodation Accomodation { get; set; }
 
         public IEnumerable<OffertAttraction> OffertAttractions { get; set; }
-
+        public IEnumerable<ClientInfo> ClientsInfo { get; set; }
     }
 }

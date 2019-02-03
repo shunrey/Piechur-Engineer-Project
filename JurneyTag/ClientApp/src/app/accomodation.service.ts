@@ -27,7 +27,7 @@ export class AccomodationService {
   }
 
   getMainPhoto(accId:number){
-    return this.httpClient.get(this.urlGetMainPhoto + '?id=' + accId +'&sufix=AccdMain',{
+    return this.httpClient.get(this.urlGetMainPhoto + '?id=' + accId +'&sufix=Main',{
       responseType: 'blob'
     });
  }

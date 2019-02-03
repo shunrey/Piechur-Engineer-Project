@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
   crossorigin="anonymous">
 <mat-toolbar class="mat-elevation-z7" style="z-index: 100 !important" >
-  <span class="logo"> <h1>Piechur.pl</h1></span>
+  <span class="logo"  routerLink="" routerLinkActive="active" > <h1>Piechur.pl</h1></span>
   <span class="fill-small-space"></span>
   <span class="fill-small-space"></span>
   <button mat-icon-button><i class="fa fa-search fa-lg"></i></button>
@@ -11,7 +11,8 @@
   <span class="fill-space"></span>
   <button mat-button  [matMenuTriggerFor]="menu2">Moje oferty </button>
   <button mat-button [matMenuTriggerFor]="menu">Mój Katalog</button>
-  <span class="fill-small-space"></span>
+  <span style="margin-right:4%"></span>
+  <div style="font-size: 14px; margin-right: 2%; font-style: italic">Witaj, Dawid.</div>
   <button mat-icon-button><i class="fa fa-bell fa-lg"></i></button>
   <button mat-icon-button><i class="fa fa-calendar fa-lg"></i></button>
   <button mat-icon-button><i class="fa fa-user fa-lg"></i></button>
@@ -24,7 +25,7 @@
 
   <mat-menu #menu2="matMenu">
       <button mat-menu-item routerLink="/addOffert" routerLinkActive="active">Stwórz ofertę</button>
-      <button mat-menu-item routerLink="/listAccd" routerLinkActive="active">Moje oferty</button>
+      <button mat-menu-item routerLink="/offertList" routerLinkActive="active">Moje oferty</button>
   </mat-menu>
 </mat-toolbar>
 

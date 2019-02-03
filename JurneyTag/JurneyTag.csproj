@@ -32,6 +32,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\AccomodationGallery\User1\" />
     <Folder Include="wwwroot\CityGallery\" />
+    <Folder Include="wwwroot\OffertGallery\User1\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

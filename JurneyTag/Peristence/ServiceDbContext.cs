@@ -37,5 +37,6 @@ namespace JurneyTag.Peristence
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Offert> Offerts { get; set; }
         public DbSet<OffertAttraction> OffertAttractions { get; set; }
+        public DbSet<ClientInfo> ClientsInfo { get; set; }
     }
 }

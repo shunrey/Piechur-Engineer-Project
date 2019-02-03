@@ -44,9 +44,12 @@ export class OffertDetailComponent implements OnInit {
         this.city = resp as City;
         console.log(this.city);       
       });
+      this.offertService.getMainPhoto(this.offertId).subscribe(pres => {
+        this.createImageFromBlob(pres, this.offert);
+      });
       this.cityService.getMainPhoto(this.offert.cityId).subscribe(resp => {
         this.createImageFromBlob(resp, this.city);
-      })
+      });
       this.accomodationService.getAccomodation(this.offert.accomodationId).subscribe(resp => {
         this.accomodation = resp as Accomodation;
         console.log(this.accomodation);
@@ -223,6 +226,8 @@ export class OffertDetailComponent implements OnInit {
      maxPrice : undefined,
      offertType : '',
      maxPlaces : undefined,
+     isPublished : undefined,
+     mainImage : undefined,
      attractionsDates : [] = []
    };
    

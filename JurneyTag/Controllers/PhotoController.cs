@@ -17,24 +17,28 @@ namespace JurneyTag.Controllers
     public class PhotoController : Controller
     {
         private readonly IHostingEnvironment _hostingEnvironment;
-        private readonly ICityRepository _cityRepository;
+        private readonly ICityRepository _cityRepository;   
         private readonly IAccomodationRepository _accomodationRepository;
         private readonly IAttractionRepository _attractionRepository;
+        private readonly IOffertRespository _offertRespository;
 
         public PhotoController(IHostingEnvironment hostingEnvironment, ICityRepository cityRepository, 
                                                                        IAccomodationRepository accomodationRepository,
-                                                                       IAttractionRepository attractionRepository)
+                                                                       IAttractionRepository attractionRepository,
+                                                                       IOffertRespository offertRespository)
         {
             _hostingEnvironment = hostingEnvironment;
             _cityRepository = cityRepository;
             _accomodationRepository = accomodationRepository;
             _attractionRepository = attractionRepository;
+            _offertRespository = offertRespository;
         }
 
-        [HttpPost("addCityPhoto")]
-        public async Task<IActionResult> AddCityPhoto(IFormFile image)
+        [HttpPost("addCityPhoto/{cityName}")]
+        public async Task<IActionResult> AddCityPhoto(IFormFile image, string cityName)
         {
             var path = Path.Combine(_hostingEnvironment.WebRootPath, "CityGallery", "User1");
+            var imageName = cityName + "Main" + ".png";
 
             if (!Directory.Exists(path))
             {
@@ -43,7 +47,7 @@ namespace JurneyTag.Controllers
 
             if (image.Length > 0)
             {
-                using (var fileStream = new FileStream(Path.Combine(path, image.FileName), FileMode.Create))
+                using (var fileStream = new FileStream(Path.Combine(path, imageName), FileMode.Create))
                 {
                     await image.CopyToAsync(fileStream);
                 }
@@ -52,10 +56,11 @@ namespace JurneyTag.Controllers
             return Ok();
         }
 
-        [HttpPost("addAccomodationPhoto")]
-        public async Task<IActionResult> AddAccomodationPhoto(IFormFile image)
+        [HttpPost("addAccomodationPhoto/{accomodationName}")]
+        public async Task<IActionResult> AddAccomodationPhoto(IFormFile image, string accomodationName)
         {
             var path = Path.Combine(_hostingEnvironment.WebRootPath, "AccomodationGallery", "User1");
+            var imageName = accomodationName + "Main" + ".png";
 
             if (!Directory.Exists(path))
             {
@@ -64,7 +69,7 @@ namespace JurneyTag.Controllers
 
             if (image.Length > 0)
             {
-                using (var fileStream = new FileStream(Path.Combine(path, image.FileName), FileMode.Create))
+                using (var fileStream = new FileStream(Path.Combine(path, imageName), FileMode.Create))
                 {
                     await image.CopyToAsync(fileStream);
                 }
@@ -73,10 +78,11 @@ namespace JurneyTag.Controllers
             return Ok();
         }
 
-        [HttpPost("addAttractionPhoto")]
-        public async Task<IActionResult> AddAttractionPhoto(IFormFile image)
+        [HttpPost("addAttractionPhoto/{attractionName}")]
+        public async Task<IActionResult> AddAttractionPhoto(IFormFile image, string attractionName)
         {
             var path = Path.Combine(_hostingEnvironment.WebRootPath, "AttractionGallery", "User1");
+            var imageName = attractionName + "Main" + ".png";
 
             if (!Directory.Exists(path))
             {
@@ -85,13 +91,48 @@ namespace JurneyTag.Controllers
 
             if (image.Length > 0)
             {
-                using (var fileStream = new FileStream(Path.Combine(path, image.FileName), FileMode.Create))
+                using (var fileStream = new FileStream(Path.Combine(path, imageName), FileMode.Create))
                 {
                     await image.CopyToAsync(fileStream);
                 }
             }
 
             return Ok();
+        }
+
+        [HttpPost("addOffertPhoto/{offertName}")]
+        public async Task<IActionResult> AddOffertPhoto(IFormFile image, string offertName )
+        {
+            var path = Path.Combine(_hostingEnvironment.WebRootPath, "OffertGallery", "User1");
+            var imageName = offertName + "Main" + ".png";
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+
+            if (image.Length > 0)
+            {
+                using (var fileStream = new FileStream(Path.Combine(path, imageName), FileMode.Create))
+                {
+                    await image.CopyToAsync(fileStream);
+                }
+            }
+
+            return Ok();
+        }
+
+
+        [HttpGet("getOffertPhoto")]
+        public async Task<IActionResult> GetOffertPhoto(int id, string sufix)
+        {
+            var offert = await _offertRespository.GetOffert(id);
+            var offertName = offert.Name + sufix;
+
+            var path = Path.Combine(_hostingEnvironment.WebRootPath, "OffertGallery", "User1");
+            var image = System.IO.File.OpenRead(path + "\\" + offertName + ".png");
+
+            return File(image, "image/png");
         }
 
         [HttpGet("getCityPhoto")]
@@ -110,7 +151,7 @@ namespace JurneyTag.Controllers
         public async Task<IActionResult> GetAccomodationPhoto(int id, string sufix)
         {
             var accd = await _accomodationRepository.GetAccomodation(id);
-            var accdName = accd.AddressCity + sufix;
+            var accdName = accd.Name + sufix;
 
             var path = Path.Combine(_hostingEnvironment.WebRootPath, "AccomodationGallery", "User1");
             var image = System.IO.File.OpenRead(path + "\\" + accdName + ".png");
@@ -122,7 +163,7 @@ namespace JurneyTag.Controllers
         public async Task<IActionResult> GetAttractionPhoto(int id, string sufix)
         {
             var attr = await _attractionRepository.GetAttraction(id);
-            var attrName = attr.AddressCity + sufix;
+            var attrName = attr.Name + sufix;
 
             var path = Path.Combine(_hostingEnvironment.WebRootPath, "AttractionGallery", "User1");
             var image = System.IO.File.OpenRead(path + "\\" + attrName + ".png");

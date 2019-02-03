@@ -2,7 +2,6 @@
   crossorigin="anonymous">
 
 <body style="margin-left: 25%">
-  {{attraction | json}}
   <h2 style="color: darkslategrey">
     Dodaj nową atrakcję
   </h2>
@@ -137,7 +136,7 @@
       <mat-step>
         <ng-template matStepLabel>Zdjęcie</ng-template>
         <mat-label>Wybierz głowne zdjęcie atrakcji</mat-label>
-        <image-upload [url]="'https://localhost:5001/api/photo/addAttractionPhoto'"
+        <image-upload url="{{'https://localhost:5001/api/photo/addAttractionPhoto/' + attraction.name}}"
                       [buttonCaption]="'Wybierz zdjęcie'"
                       [dropBoxMessage]="'Lub przeciągnij je tutaj'"
                       [clearButtonCaption]="'Wyczyść'"

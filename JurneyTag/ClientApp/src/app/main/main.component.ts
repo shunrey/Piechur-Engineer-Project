@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OffertService } from '../offert.service';
+import { Offert } from '../Models/Offert';
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+ 
+  constructor(private offertService : OffertService) { }
 
-  ngOnInit() {
+   offerts: any;
+   offertsList: Offert[] = [];
+
+    ngOnInit() {
+    
+      this.offertService.getAllOfferts()
+                        .subscribe(result => {
+                           this.offerts = result;
+                           console.log(this.offerts);
+                           this.offerts.forEach(offert => {
+                             if(offert.isPublished)
+                               this.offertsList.push(Object.assign({},offert));
+                           });
+                           this.offertsList.forEach(of => {
+                             this.offertService.getMainPhoto(of.id).subscribe(res => {
+                               this.createImageFromBlob(res, of.id);
+                             });
+                           });
+                        });
   }
+
+
+ createImageFromBlob(image: Blob, cityId: any) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+    this.offertsList.find(x => x.id == cityId).mainImage = reader.result;
+    }, false);
+
+     if (image) {
+       reader.readAsDataURL(image);
+   }
+ }
 
 }

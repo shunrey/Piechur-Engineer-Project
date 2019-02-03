@@ -1,16 +1,20 @@
 <body style="margin-left:25%">
 
   <div *ngFor="let offert of offertsList">
-      <mat-card style="width:25%; float: left; margin-left: 5%" (click)="openDialog(city)">
+      <mat-card style="width:26%; float: left; margin-left: 5%" (click)="openDialog(city)">
           <mat-card-title style="text-align: center">{{offert.name}}</mat-card-title>
-          <img style="height:170px" src="http://www.zywiec.pl/zdjecia/s/dscf8485ok_201803281540.jpg" mat-card-image>
+          <img style="height:170px; margin-bottom: -2%" [src]="offert.mainImage" mat-card-image>
+          <p *ngIf="!offert.isPublished" style="text-align: center; color:gray"> Nieopublikowana </p>
+          <p *ngIf="offert.isPublished" style="text-align: center; color:green"> Opublikowana </p>
         <p><b>Typ oferty:</b> {{offert.offertType}}</p>
-        <p><b>Data:</b> {{offert.dateStart}} - {{offert.dateEnd}}</p>
+        <p><b>Data:</b> {{offert.dateStart | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}} - 
+            {{offert.dateEnd | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}}</p>
         <p><b>Cena:</b> od {{offert.minPrice}} zł/os do {{offert.maxPrice}} zł/os </p>
         <p><b>Miejsca:</b> {{offert.maxPlaces}} / {{offert.maxPlaces}} </p>
-        <mat-card-actions style="text-align: center">
-            <button mat-button [routerLink]="['offertDetail', offert.id]">Informacje</button>
-            <button mat-button>Zapisz się!</button>
+        <mat-card-actions style="text-align: center">       
+            <button mat-button [routerLink]="['offertDetail', offert.id]">Informacje</button>     
+            <button mat-button [routerLink]="['clientsList', offert.id, offert.name]" color="primary">Zarządzaj</button>
+            <button mat-flat-button [disabled]="offert.isPublished" (click)="publish(offert.id)" color='primary'>Opublikuj</button>
         </mat-card-actions>
       </mat-card>
   </div>

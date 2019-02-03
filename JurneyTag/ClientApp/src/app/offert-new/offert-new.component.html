@@ -7,7 +7,6 @@
   </h2>
   <mat-divider style="margin-bottom:-12px"></mat-divider>
   <form #f1="ngForm">
-    {{offert | json}}
     <mat-vertical-stepper #stepper (selectionChange)="selectionChange($event)" >
       <ng-template matStepperIcon="edit">
         <i class="fa fa-check"></i>
@@ -39,7 +38,7 @@
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
       
-          <quill-editor [style]="{height: '350px'}" [placeholder]="'Tutaj wstaw ciekawy opis oferty...'" name="offertDesc" [(ngModel)]="offert.description">
+          <quill-editor [style]="{height: '350px'}" [placeholder]="'Tutaj wstaw opis i wstępny plan oferty...'" name="offertDesc" [(ngModel)]="offert.description">
             <div quill-editor-toolbar>
               <span class="ql-formats">
                 <select class="ql-header" [title]="'Styl'">
@@ -235,8 +234,19 @@
          <p style="font-size: 12px; color:gray">
             *Typ oferty wybierany jest na podstawie wcześniejszych wyborów.  
          </p>
-      
       </mat-step >
+      <mat-step>
+        <ng-template matStepLabel>Zdjęcie</ng-template>
+        <mat-label>Wybierz głowne zdjęcie atrakcji</mat-label>
+        <image-upload url="{{'https://localhost:5001/api/photo/addOffertPhoto/' + offert.name}}"
+                      [buttonCaption]="'Wybierz zdjęcie'"
+                      [dropBoxMessage]="'Lub przeciągnij je tutaj'"
+                      [clearButtonCaption]="'Wyczyść'"
+                      [style]="customStyle"
+                      [max]="10"
+                      > 
+        </image-upload>
+      </mat-step>
       <mat-step [stepControl]="f1">
           <ng-template matStepLabel>Zatwierdzenie</ng-template>
           Czy chcesz zatwierdzić zmiany?

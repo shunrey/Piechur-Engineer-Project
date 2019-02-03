@@ -44,6 +44,25 @@ export class AccomodationNewComponent implements OnInit {
   latitude: number = 50.05481;
   longitude : number = 19.92784;
 
+  
+  customStyle = {
+    selectButton: {
+      "color": "white",
+      "background-color": "#00796b",
+    },
+    clearButton: {
+      "display": "none",
+    },
+    layout: {
+      "background-color": "white",
+      "color": "gray",
+      "font-size": "15px",
+    },
+    previewPanel: {
+      "background-color": "white",
+    }
+  };
+
   accomodation : Accomodation = {
     id : undefined,
     name : '',

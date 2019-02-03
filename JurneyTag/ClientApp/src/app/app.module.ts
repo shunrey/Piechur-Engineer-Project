@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatToolbarModule, MatMenuModule, MatButtonModule, MatExpansionModule, MatIconModule, MatInputModule, MatStepperModule, MatRadioModule, MatDividerModule, MatGridListModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTableModule, MatListModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, NativeDateModule, MatYearView, MatTabsModule} from '@angular/material';
+import {MatToolbarModule, MatMenuModule, MatButtonModule, MatExpansionModule, MatIconModule, MatInputModule, MatStepperModule, MatRadioModule, MatDividerModule, MatGridListModule, MatCardModule, MatDialogModule, MatSnackBarModule, MatSelectModule, MatTableModule, MatListModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MAT_DATE_FORMATS, NativeDateModule, MatYearView, MatTabsModule, MatCheckbox, MatCheckboxModule} from '@angular/material';
 import { CityListComponent } from './city-list/city-list.component';
 import { CityNewComponent } from './city-new/city-new.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -32,6 +32,9 @@ import { OffertAttractionDetailComponent } from './offert-attraction-detail/offe
 import { OffertDetailComponent } from './offert-detail/offert-detail.component';
 import { MomentModule } from 'angular2-moment';
 import { OffertListComponent } from './offert-list/offert-list.component';
+import { ClientsListComponent } from './clients-list/clients-list.component';
+import { ClientFormComponent } from './client-form/client-form.component';
+import { ClientConfirmComponent } from './client-confirm/client-confirm.component';
 
 
 @NgModule({
@@ -53,7 +56,10 @@ import { OffertListComponent } from './offert-list/offert-list.component';
     OffertNewComponent,
     OffertAttractionDetailComponent,
     OffertDetailComponent,
-    OffertListComponent
+    OffertListComponent,
+    ClientsListComponent,
+    ClientFormComponent,
+    ClientConfirmComponent
   ],
   imports: [
     BrowserModule,
@@ -89,6 +95,7 @@ import { OffertListComponent } from './offert-list/offert-list.component';
     MatDatepickerModule,
     MatTabsModule,
     NativeDateModule,
+    MatCheckboxModule,
     MatListModule,
     MatNativeDateModule,
     RouterModule.forRoot([
@@ -101,13 +108,16 @@ import { OffertListComponent } from './offert-list/offert-list.component';
       {path: 'addAttraction', component: AttractionNewComponent},
       {path: 'addOffert', component: OffertNewComponent},
       {path: 'offertList/offertDetail/:id', component: OffertDetailComponent},
-      {path: 'offertList', component: OffertListComponent}
+      {path: 'offertList', component: OffertListComponent},
+      {path: 'offertList/clientsList/:id/:name', component: ClientsListComponent},
+      {path: 'clientForm/:id/:name', component: ClientFormComponent}
     ]),
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
   ],
   entryComponents: [CityDetailComponent, AccomodationRoomComponent, AccomodationAlimentationComponent,
+                    ClientConfirmComponent,
                     AccomodationDetailComponent, AttractionDetailComponent, OffertAttractionDetailComponent],
   bootstrap: [AppComponent]
 })

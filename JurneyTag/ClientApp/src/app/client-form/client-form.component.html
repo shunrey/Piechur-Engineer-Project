@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+  crossorigin="anonymous">
+
+<body style="margin-left:25%">
+  <h2 style="color: darkslategrey">
+    {{offertName}}
+  </h2>
+  <form #f1="ngForm">
+      <mat-form-field appearance="outline" class="standard-input-space">
+          <mat-label>Imię</mat-label>
+          <input matInput placeholder="Imię" name="clientName" [(ngModel)]="client.name"
+            required>
+          <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+       </mat-form-field>
+       <mat-form-field appearance="outline" class="standard-input-space">
+          <mat-label>Nazwisko</mat-label>
+          <input matInput placeholder="Nazwisko" name="clientSurname" [(ngModel)]="client.surname"
+            required>
+          <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+       </mat-form-field>
+       <mat-form-field appearance="outline" class="standard-input-space">
+          <mat-label>Numer telefonu</mat-label>
+          <input matInput placeholder="Telefon" name="clientTelephone" [(ngModel)]="client.phone"
+            required>
+          <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+       </mat-form-field>
+       <mat-form-field appearance="outline" class="standard-input-space">
+          <mat-label>Adres email</mat-label>
+          <input matInput placeholder="Email" name="clientEmail" [(ngModel)]="client.email"
+            required>
+          <mat-icon matSuffix><i class="fas fa-edit fa-xs"></i> </mat-icon>
+       </mat-form-field>
+       <mat-form-field appearance="outline" style="height:7%; width:75%; margin-bottom: 3%">
+          <textarea matInput placeholder="Dodatkowe preferencje/uwagi" name="clientPreferences" 
+                                                             [(ngModel)]="client.preferences"></textarea>
+        </mat-form-field>
+      <div>
+          <mat-checkbox name="clientRodo" [(ngModel)]="client.isRodoChecked" required
+                        style="float:left; margin-right: 2%; margin-top: -3%">
+           </mat-checkbox>
+            <div style= "word-wrap: break-word; font-size: 14px; color:darkslategrey; float: left; margin-top: -3%; margin-left: 3%; max-width: 73%" >
+                Wyrażam zgodę na przetwarzanie moich danych osobowych dla potrzeb niezbędnych do realizacji 
+                procesu zapisu do oferty (zgodnie z ustawą z dnia 10 maja 2018 roku o ochronie danych osobowych (Dz. Ustaw z 2018, poz. 1000)
+                oraz zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 z dnia 27 kwietnia 2016 r. w sprawie ochrony osób 
+                fizycznych w związku z przetwarzaniem danych osobowych i w sprawie swobodnego przepływu takich danych oraz uchylenia dyrektywy 95/46/WE (RODO)).
+            </div>
+      </div>
+      <div style="clear: both; margin-left: 33%; margin-top: 7% "> 
+          <button mat-flat-button (click)="save()" color="primary">Zapisz się</button>   
+      </div>
+         
+  </form>
+
+</body>

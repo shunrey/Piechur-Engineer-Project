@@ -1,0 +1,114 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+  crossorigin="anonymous">
+
+<body style="margin-left: 25%">
+
+  <h2 style="color: darkslategrey">
+    Lista Klientów
+    <i style="margin-left: 5%; color: red" class="fas fa-file-pdf"></i>
+    <i style="margin-left: 2%; color: green" class="fas fa-file-excel"></i>
+  </h2>
+
+  <mat-tab-group mat-stretch-tabs >
+    <mat-tab label="Oczekujący klienci"> 
+        <table mat-table [dataSource]="dataSourceAllClients"  style="width: 80%; margin-left: 8%" >
+            <ng-container matColumnDef="Imię">
+              <th mat-header-cell *matHeaderCellDef> <b>Imię</b> </th>
+              <td mat-cell *matCellDef="let client"> {{client.name}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="Nazwisko">
+              <th mat-header-cell *matHeaderCellDef> <b>Nazwisko</b> </th>
+              <td mat-cell *matCellDef="let client"> {{client.surname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Telefon">
+              <th mat-header-cell *matHeaderCellDef> <b>Telefon</b>  </th>
+              <td mat-cell *matCellDef="let client"> {{client.phone}} </td>
+            </ng-container>
+
+                  
+            <ng-container matColumnDef="Email">
+               <th mat-header-cell *matHeaderCellDef> <b>Email</b> </th>
+               <td mat-cell *matCellDef="let client"> {{client.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Zaakceptuj">
+                <th mat-header-cell *matHeaderCellDef> <i class="fas fa-user-plus fa-lg"></i>  </th>
+                <td mat-cell *matCellDef="let client"> <button mat-stroked-button color="primary" (click)="acceptClient(client)" >Zakceptuj</button> </td>
+             </ng-container>
+          
+        
+             <ng-container matColumnDef="Usuń">
+                <th mat-header-cell *matHeaderCellDef> <i class="fas fa-user-times fa-lg"></i> </th>
+                <td mat-cell *matCellDef="let client"> <button mat-stroked-button color="warn" (click)="rejectClient(client)" >Odrzuć</button> </td>
+             </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsClients; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsClients;"></tr>
+        </table>
+    </mat-tab>
+    <mat-tab label="Klienci zaakceptowani"> 
+        <table mat-table [dataSource]="dataSourceAcceptedClients"  style="width: 80%; margin-left: 8%" >
+            <ng-container matColumnDef="Imię">
+              <th mat-header-cell *matHeaderCellDef> <b>Imię</b> </th>
+              <td mat-cell *matCellDef="let client"> {{client.name}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="Nazwisko">
+              <th mat-header-cell *matHeaderCellDef> <b>Nazwisko</b> </th>
+              <td mat-cell *matCellDef="let client"> {{client.surname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Telefon">
+              <th mat-header-cell *matHeaderCellDef> <b>Telefon</b>  </th>
+              <td mat-cell *matCellDef="let client"> {{client.phone}} </td>
+            </ng-container>
+
+                  
+            <ng-container matColumnDef="Email">
+               <th mat-header-cell *matHeaderCellDef> <b>Email</b> </th>
+               <td mat-cell *matCellDef="let client"> {{client.email}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Informacje">
+                <th mat-header-cell *matHeaderCellDef> <i class="fas fa-info fa-lg"></i> </th>
+                <td mat-cell *matCellDef="let client"> <button mat-stroked-button style="color:blue" (click)="InfoClient(client)" >Informacje</button> </td>
+             </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsAccClients; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsAccClients;"></tr>
+        </table>  
+    </mat-tab>
+    <mat-tab label="Klienci odrzuceni"> 
+        <table mat-table [dataSource]="dataSourceRejectedClients"  style="width: 80%; margin-left: 8%" >
+            <ng-container matColumnDef="Imię">
+              <th mat-header-cell *matHeaderCellDef> <b>Imię</b> </th>
+              <td mat-cell *matCellDef="let client"> {{client.name}} </td>
+            </ng-container>
+        
+            <ng-container matColumnDef="Nazwisko">
+              <th mat-header-cell *matHeaderCellDef> <b>Nazwisko</b> </th>
+              <td mat-cell *matCellDef="let client"> {{client.surname}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="Telefon">
+              <th mat-header-cell *matHeaderCellDef> <b>Telefon</b>  </th>
+              <td mat-cell *matCellDef="let client"> {{client.phone}} </td>
+            </ng-container>
+
+                  
+            <ng-container matColumnDef="Email">
+               <th mat-header-cell *matHeaderCellDef> <b>Email</b> </th>
+               <td mat-cell *matCellDef="let client"> {{client.email}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsRejClients; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsRejClients;"></tr>
+        </table>  
+    </mat-tab>
+  </mat-tab-group>
+
+
+
+</body>

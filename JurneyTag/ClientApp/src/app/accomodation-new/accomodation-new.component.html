@@ -5,7 +5,6 @@
   <h2 style="color: darkslategrey">
     Dodaj nowe zakwaterowanie
   </h2>
-  {{accomodation | json}}
 
   <form #f1="ngForm">
     <mat-horizontal-stepper #stepper (selectionChange)="selectionChange($event)">
@@ -174,7 +173,7 @@
       
           <ng-container matColumnDef="Dodatkowa cena">
             <th mat-header-cell *matHeaderCellDef> Dodatkowa cena </th>
-            <td mat-cell *matCellDef="let alimentation"> {{alimentation.addPrice}} </td>
+            <td mat-cell *matCellDef="let alimentation"> {{alimentation.addPrice}} zł </td>
           </ng-container>
         
           <ng-container matColumnDef="Usuń">
@@ -194,7 +193,7 @@
       <mat-step>
         <ng-template matStepLabel>Zdjęcie</ng-template>
         <mat-label>Wybierz głowne zdjęcie zakwaterowania</mat-label>
-        <image-upload [url]="'https://localhost:5001/api/photo/addAccomodationPhoto'"
+        <image-upload url="{{'https://localhost:5001/api/photo/addAccomodationPhoto/' + accomodation.name}}"
                       [buttonCaption]="'Wybierz zdjęcie'"
                       [dropBoxMessage]="'Lub przeciągnij je tutaj'"
                       [clearButtonCaption]="'Wyczyść'"

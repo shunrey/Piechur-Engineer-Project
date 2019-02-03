@@ -14,5 +14,7 @@ namespace JurneyTag.Core
         void AddOffert(Offert offert);
         void RemoveOffert(int id);
         void UpdateOffert(Offert offert);
+        void AddClient(ClientInfo client);
+        Task<IEnumerable<ClientInfo>> GetClientsInfo(int offertId);
     }
 }

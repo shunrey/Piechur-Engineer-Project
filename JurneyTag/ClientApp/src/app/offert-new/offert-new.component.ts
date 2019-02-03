@@ -10,6 +10,7 @@ import { MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
 import { OffertAttractionDetailComponent } from '../offert-attraction-detail/offert-attraction-detail.component';
 import { Offert } from '../Models/Offert';
 import { OffertService } from '../offert.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-offert-new',
@@ -21,7 +22,7 @@ export class OffertNewComponent implements OnInit {
   constructor(private cityService : CityService, private accomodationService : AccomodationService, 
               private cdr: ChangeDetectorRef, private attractionService : AttractionService,
               private dialog: MatDialog, private offertService : OffertService,
-              private snackBar : MatSnackBar) { }
+              private snackBar : MatSnackBar, private router : Router) { }
 
   cities : City[] = [];
   accomodations : Accomodation[] = [];
@@ -49,7 +50,7 @@ export class OffertNewComponent implements OnInit {
     });
     this.attractionService.getAllAttractions().subscribe(res=> {
       this.attractions = res as Attraction[];
-    })
+    });
   }
 
   createImageFromBlob(image: Blob, object: any) {
@@ -180,6 +181,7 @@ export class OffertNewComponent implements OnInit {
       this.snackBar.open("Stworzono nową ofertę", "Zamknij", {
         duration: 2000,
       });
+      this.router.navigate(['/offertList']);
     });
   };
 
@@ -261,11 +263,29 @@ export class OffertNewComponent implements OnInit {
      maxPrice : undefined,
      offertType : '',
      maxPlaces : undefined,
+     mainImage : undefined,
+     isPublished : undefined,
      attractionsDates : [] = []
    };
 
  
-  
+   customStyle = {
+    selectButton: {
+      "color": "white",
+      "background-color": "#00796b",
+    },
+    clearButton: {
+      "display": "none",
+    },
+    layout: {
+      "background-color": "white",
+      "color": "gray",
+      "font-size": "15px",
+    },
+    previewPanel: {
+      "background-color": "white",
+    }
+  };
 
   attrNumber : number;
 }

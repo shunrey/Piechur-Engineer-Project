@@ -19,6 +19,8 @@ namespace JurneyTag.Utilities.Mappers
                 MinPrice = offertResource.MinPrice,
                 DateEnd = offertResource.DateEnd,
                 DateStart = offertResource.DateStart,
+                IsPublished = offertResource.IsPublished,
+                ActualPlaces = offertResource.ActualPlaces,
                 Places = offertResource.MaxPlaces,
                 OffertType = offertResource.OffertType,
                 AccomodationId = offertResource.AccomodationId,
@@ -27,6 +29,64 @@ namespace JurneyTag.Utilities.Mappers
             };
 
             return offert;
+        }
+
+        public static ClientInfo MapClientInfoResourceToClientInfo(ClientInfoResource clientInfoResource)
+        {
+            var clientInfo = new ClientInfo
+            {
+                Id = clientInfoResource.Id,
+                Name = clientInfoResource.Name,
+                Surname = clientInfoResource.Surname,
+                Phone = clientInfoResource.Phone,
+                Email = clientInfoResource.Email,
+                Preferences = clientInfoResource.Preferences,
+                IsAccepted = clientInfoResource.IsAccepted,
+                IsRejected = clientInfoResource.IsRejected,
+                IsRodoChecked = clientInfoResource.IsRodoChecked,
+                OffertId = clientInfoResource.OffertId
+            };
+
+            return clientInfo;
+        }
+
+        public static ClientInfoResource MapClientInfoToClientInfoResource(ClientInfo clientInfo)
+        {
+            var clientInfoResource = new ClientInfoResource
+            {
+                Id = clientInfo.Id,
+                Name = clientInfo.Name,
+                Surname = clientInfo.Surname,
+                Phone = clientInfo.Phone,
+                Email = clientInfo.Email,
+                Preferences = clientInfo.Preferences,
+                IsAccepted = clientInfo.IsAccepted,
+                IsRejected = clientInfo.IsRejected,
+                IsRodoChecked = clientInfo.IsRodoChecked,
+                OffertId = clientInfo.OffertId
+            };
+
+            return clientInfoResource;
+        }
+
+        public static IEnumerable<ClientInfo> MapClientsInfoResourceToClientsInfo(IEnumerable<ClientInfoResource> 
+                                                                                             clientInfoResources)
+        {
+            var clientsInfo = new List<ClientInfo>();
+            clientInfoResources.ToList()
+                               .ForEach(c => clientsInfo.Add(MapClientInfoResourceToClientInfo(c)));
+
+            return clientsInfo;
+        }
+
+        public static IEnumerable<ClientInfoResource> MapClientsInfoToClientInfoResources(IEnumerable<ClientInfo>
+                                                                                                       clientsInfo)
+        {
+            var clientInfoResources = new List<ClientInfoResource>();
+            clientsInfo.ToList()
+                       .ForEach(cr => clientInfoResources.Add(MapClientInfoToClientInfoResource(cr)));
+
+            return clientInfoResources;
         }
 
         public static IEnumerable<Offert> MapOffertsResourcesToOfferts(IEnumerable<OffertResource> offertResources)
@@ -51,6 +111,8 @@ namespace JurneyTag.Utilities.Mappers
                 DateStart = offert.DateStart,
                 MaxPlaces = offert.Places,
                 OffertType = offert.OffertType,
+                IsPublished = offert.IsPublished,
+                ActualPlaces = offert.ActualPlaces,
                 AccomodationId = offert.AccomodationId,
                 CityId = offert.CityId,
                 AttractionsDates = MapOffertAttractionsToAttractionDatesResources(offert.OffertAttractions)

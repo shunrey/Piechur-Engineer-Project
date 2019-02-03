@@ -14,14 +14,22 @@
           Główne informacje
         </ng-template>
         <br>
-        <p><b>Czas trwania:</b> {{offert.dateStart | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}} - 
-          {{offert.dateEnd | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}}</p>
-        <p><b>Ilość miejsc:</b> {{offert.maxPlaces}}/{{offert.maxPlaces}} </p>
-        <p><b>Typ oferty:</b> {{offert.offertType}} </p>
-        <p><b>Cena oferty minimalna:</b> {{offert.minPrice}} zł/os</p>
-        <p><b>Cena oferty maksymalna:</b> {{offert.maxPrice}} zł/os </p>
-        <br>
-        <p [innerHTML]="offert.description" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px;"></p>
+        <div style="float:left; max-width: 300px; word-wrap: break-word">
+          <p><b>Czas trwania:</b> {{offert.dateStart | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}} - 
+            {{offert.dateEnd | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}}</p>
+          <p><b>Ilość miejsc:</b> {{offert.maxPlaces}}/{{offert.maxPlaces}} </p>
+          <p><b>Typ oferty:</b> {{offert.offertType}} </p>
+          <p><b>Cena oferty minimalna:</b> {{offert.minPrice}} zł/os</p>
+          <p><b>Cena oferty maksymalna:</b> {{offert.maxPrice}} zł/os </p>
+          <br>
+          <b style="color:gray">Orgnizator (kontakt):</b>
+          <p><b>Imię i nazwisko:</b> Dawid Zoń</p>
+          <p><b>Telefon:</b> 456667789</p>
+          <p><b>Adres email:</b> shunrey78@gmail.com</p>
+          <p style="color:gray; font-size: 14px" >* Do danej oferty można się zapisać za pomoca formularza bądź telefoniczny, czy też mailowy kontakt z organizatorem</p>
+        </div>
+        <img [src]="offert.mainImage" style="width: 600px; height: 400px; float:left; margin-top: 1%;margin-left: 5%;margin-bottom: 3% ">
+        <p [innerHTML]="offert.description" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px; clear:both"></p>
       </mat-tab>
     
       <mat-tab>
@@ -36,7 +44,7 @@
             <p><b>Gęstość zaludnienia:</b> {{city.populationDensity}} os/km<sup>2</sup></p>
             <p><b>Wysokość nad poziomem morza:</b> {{city.metersAboveSeaLevel}} m.n.p.m </p>
         </div>
-        <img [src]="city.mainImage" style="width: 500px; height: 300px; float:left; margin-top: 5%">
+        <img [src]="city.mainImage" style="width: 500px; height: 300px; float:left; margin-top: 5%;margin-bottom: 5%">
         <br>
         <p  [innerHTML]="offert.description" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px; clear: both;"></p>
         
@@ -105,13 +113,13 @@
             Atrakcje
           </ng-template>
           <div *ngFor="let attraction of attractions">
-            <div style="float:left">
-                <p style="margin-left: 35%; font-size: 30px"><b>{{attraction.name}}</b></p>
+            <div style="float:left; max-width: 300px; word-wrap: break-word">
+                <p style="margin-left: 0%; font-size: 20px "><b>{{attraction.name}}</b></p>
                 <p><b>Data: </b>{{attraction._dynamicDateAttraction  | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}}</p>
                 <p><b>Cena biletu: </b>{{attraction.ticketPrice}} zł</p>
                 <p><b>Cena biletu ulgowego: </b>{{attraction.halfTicketPrice}} zł</p>
             </div>
-            <img [src]="attraction.mainImage" style="width: 400px; height: 250px; float:left; margin-top: 5%; margin-left: 20%; margin-bottom: 5%">
+            <img [src]="attraction.mainImage" style="width: 400px; height: 250px; float:left; margin-top: 3%; margin-left: 20%; margin-bottom: 5%">
             <p  [innerHTML]="attraction.description" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px; clear: both;"></p>
             <p><b>Czynne: </b>{{attraction.seasonOpen}}</p>
             <br>

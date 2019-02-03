@@ -1,42 +1,23 @@
 <body style="margin-left:25%">
 
-    <mat-card style="width:25%; float: left; margin-left: 5%" (click)="openDialog(city)">
-        <mat-card-title style="text-align: center">Poznaj  Żywiec!</mat-card-title>
-        <img style="height:170px" src="http://www.zywiec.pl/zdjecia/s/dscf8485ok_201803281540.jpg" mat-card-image>
-      <p><b>Typ oferty:</b> zakwaterowanie i atrakcje</p>
-      <p><b>Data:</b> 16.02.1019 - 19.02.2019</p>
-      <p><b>Cena:</b> 300 zł/os </p>
-      <p><b>Miejsca:</b> 15/15 </p>
-      <mat-card-actions style="text-align: center">
-          <button mat-button>Informacje</button>
-          <button mat-button>Zapisz się!</button>
-      </mat-card-actions>
-    </mat-card>
+    <div *ngFor="let offert of offertsList">
 
-    <mat-card style="width:25%; float: left; margin-left: 5%" (click)="openDialog(city)">
-        <mat-card-title style="text-align: center">Narty w Korbielowie</mat-card-title>
-        <img style="height:170px" src="https://halamiziowa.pl/shared/2016/06/06.jpg" mat-card-image>
-      <p><b>Typ oferty:</b> zakwaterowanie i atrakcje</p>
-      <p><b>Data:</b> 22.02.1019 - 28.02.2019</p>
-      <p><b>Cena:</b> 600 zł/os </p>
-      <p><b>Miejsca:</b> 18/18 </p>
-      <mat-card-actions style="text-align: center">
-          <button mat-button>Informacje</button>
-          <button mat-button>Zapisz się!</button>
-      </mat-card-actions>
-    </mat-card>
+        <mat-card style="width:26%; float: left; margin-left: 5%" (click)="openDialog(city)">
+            <mat-card-title style="text-align: center">{{offert.name}}</mat-card-title>
+            <img style="height:170px; margin-bottom: -2%" [src]="offert.mainImage" mat-card-image>
+            <p style="text-align: center; color:gray">Organizator: Dawid Zoń</p>
+          <p><b>Typ oferty:</b> {{offert.offertType}}</p>
+          <p><b>Data:</b> {{offert.dateStart | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}} - 
+              {{offert.dateEnd | amAdd: 2 : 'hours' | amDateFormat: 'DD.MM.YYYY'}}</p>
+          <p><b>Cena:</b> od {{offert.minPrice}} zł/os do {{offert.maxPrice}} zł/os </p>
+          <p><b>Miejsca:</b> {{offert.maxPlaces}} / {{offert.maxPlaces}} </p>
+          <mat-card-actions style="text-align: center">       
+              <button mat-button [routerLink]="['offertDetail', offert.id]">Informacje</button>     
+              <button mat-button color="primary" [routerLink]="['clientForm', offert.id, offert.name]">Zapisz się!</button>
+          </mat-card-actions>
+        </mat-card>
 
-    <mat-card style="width:25%; float: left; margin-left: 5%" (click)="openDialog(city)">
-        <mat-card-title style="text-align: center">Noclegi w Jeleśni</mat-card-title>
-        <img style="height:170px" src="https://q-xx.bstatic.com/xdata/images/hotel/max1024x768/126878331.jpg?k=8baa695e27ad10c45c1511d257e045f429fb219ff47e916672fd4556fef9c1fa&o=" mat-card-image>
-      <p><b>Typ oferty:</b> zakwaterowanie - Pensjonat Maria</p>
-      <p><b>Data:</b> nie dotyczy</p>
-      <p><b>Cena:</b> 80 zł/os </p>
-      <p><b>Miejsca:</b> 24/35 </p>
-      <mat-card-actions style="text-align: center">
-          <button mat-button>Informacje</button>
-          <button mat-button>Zapisz się!</button>
-      </mat-card-actions>
-    </mat-card>
+    </div>
+  
 
 </body>

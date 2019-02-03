@@ -11,6 +11,8 @@ export interface Offert {
     attractionsDates : AttractionDate[];
     minPrice : number;
     maxPrice : number;
+    isPublished : boolean;
     offertType : string;
     maxPlaces : number;
+    mainImage : any;
 }

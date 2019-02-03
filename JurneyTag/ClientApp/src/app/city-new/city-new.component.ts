@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
+import { relativeTimeThreshold } from 'moment';
 
 declare let L;
 declare let tomtom: any;
@@ -25,6 +26,7 @@ export class CityNewComponent implements OnInit {
   response : any;
   latitude: number = 50.05481;
   longitude : number = 19.92784;
+  cityNameEN : string;
  
 
   city : City = {
@@ -117,6 +119,12 @@ selectionChange(event){
     this.getCoordinates();
     
   }
+  if (event.selectedIndex == 2){
+    console.log(this.cityNameEN);   
+    console.log(this.city.name);  
+  }
 }
+
+
  
 }

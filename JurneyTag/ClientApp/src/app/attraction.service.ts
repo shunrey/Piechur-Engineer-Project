@@ -27,7 +27,7 @@ export class AttractionService {
   }
 
   getMainPhoto(attrId:number){
-    return this.httpClient.get(this.urlGetMainPhoto + '?id=' + attrId +'&sufix=AttrMain',{
+    return this.httpClient.get(this.urlGetMainPhoto + '?id=' + attrId +'&sufix=Main',{
       responseType: 'blob'
     });
 }

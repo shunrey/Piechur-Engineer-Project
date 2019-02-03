@@ -17,9 +17,19 @@ namespace JurneyTag.Peristence
             _serviceDbContext = serviceDbContext;
         }
 
+        public void AddClient(ClientInfo client)
+        {
+            _serviceDbContext.ClientsInfo.Add(client);
+        }
+
         public void AddOffert(Offert offert)
         {
             _serviceDbContext.Offerts.Add(offert);
+        }
+
+        public async Task<IEnumerable<ClientInfo>> GetClientsInfo(int offertId)
+        {
+            return await _serviceDbContext.ClientsInfo.Where(c => c.OffertId == offertId).ToListAsync();
         }
 
         public async Task<Offert> GetOffert(int id)
